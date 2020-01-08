@@ -38,7 +38,7 @@
   ]
 
   $container.append(
-    '<h5>Customize AdminLTE</h5><hr class="mb-2"/>'
+    '<h5>Customize Apotik Home</h5><hr class="mb-2"/>'
   )
 
   var $no_border_checkbox = $('<input />', {

@@ -1,17 +1,9 @@
-<!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2019 <a href="https://tendydeveloper.com">www.tendydeveloper.com</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.0-rc.3
+      <b>Version</b> 1.0.0
     </div>
   </footer>
 </div>
@@ -33,8 +25,8 @@
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
 <script src="<?php echo base_url('asetku/adminlte/plugins/jquery-mousewheel/jquery.mousewheel.js'); ?>"></script>
-<script src="<?php echo base_url('asetku/adminlte/plugins/raphael/raphael.min.js');?>"></script>
-<script src="<?php echo base_url('asetku/adminlte/plugins/jquery-mapael/jquery.mapael.min.js');?>"></script>
+<script src="<?php echo base_url('asetku/adminlte/plugins/raphael/raphael.min.js'); ?>"></script>
+<script src="<?php echo base_url('asetku/adminlte/plugins/jquery-mapael/jquery.mapael.min.js'); ?>"></script>
 <script src="<?php echo base_url('asetku/adminlte/plugins/jquery-mapael/maps/usa_states.min.js'); ?>"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url('asetku/adminlte/plugins/chart.js/Chart.min.js'); ?>"></script>
