@@ -10,4 +10,8 @@ class Produk extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->view('v_produk');
 	}
+
+	function insert(){
+		$this->load->view('v_produk_insert');
+	}
 }
