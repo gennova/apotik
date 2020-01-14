@@ -4,6 +4,7 @@
   <title>AdminLTE 3 | DataTables</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="<?php echo base_url('asetku/bootstrap-datepicker/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet">
   <!-- Font Awesome --> 
   <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/fontawesome-free/css/all.min.css'); ?>">
   <!-- Ionicons -->

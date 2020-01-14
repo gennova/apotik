@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <?php include('basehome/headdata.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Main content -->
@@ -19,7 +18,10 @@
               </div>
               <div class="card-body" style="padding: 0.25rem">                
                 NAMA <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-                NAMA <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+                <div class="form-group">
+                    TANGGAL
+                    <input type="text" class="form-control form-control-sm datepicker" />
+                </div>
                 PILIH
                         <select class="form-control form-control-sm">
                           <option>option 1</option>
@@ -108,29 +110,22 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.0-rc.3
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+ <?php include('basehome/footerdata.php'); ?>
 </body>
 </html>
+<!-- Include library Bootstrap Datepicker -->
+    <script src="<?php echo base_url('asetku/bootstrap-datepicker/js/bootstrap-datepicker.min.js'); ?>"></script>
+
+    <!-- Include file custom.js -->
+    <script src="<?php echo base_url('asetku/bootstrap-datepicker/js/custom.js'); ?>"></script>
+
+    <script>
+    $(document).ready(function(){
+        setDatePicker()
+        setDateRangePicker(".startdate", ".enddate")
+        setMonthPicker()
+        setYearPicker()
+        setYearRangePicker(".startyear", ".endyear")
+    })
+  </script>
