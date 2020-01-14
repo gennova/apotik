@@ -5,48 +5,33 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>DataTables</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-12">
+          DATA PRODUK
           <!-- /.card -->
           <div class="card">
             <div class="card-header">
-               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-xl">
+               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-xl">
                   INSERT
                 </button>
-                <button type="button" class="btn btn-success swalDefaultSuccess">
+                <button type="button" class="btn btn-success swalDefaultSuccess btn-sm">
                   Launch Success Toast
                 </button>
-                <button type="button" class="btn btn-info swalDefaultInfo">
+                <button type="button" class="btn btn-info swalDefaultInfo btn-sm">
                   Launch Info Toast
                 </button>
-                <button type="button" class="btn btn-danger swalDefaultError">
+                <button type="button" class="btn btn-danger swalDefaultError btn-sm">
                   Launch Error Toast
                 </button>
-                <button type="button" class="btn btn-warning swalDefaultWarning">
+                <button type="button" class="btn btn-warning swalDefaultWarning btn-sm">
                   Launch Warning Toast
                 </button>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped table-hover">
+              <table id="example1" class="table table-bordered table-striped table-hover" style="line-height: 1px">
                 <thead>
                 <tr>
                   <th>Rendering engine</th>
@@ -487,6 +472,22 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <style> 
+input[type=text] {
+  width: 100%;
+  padding: 2px 2px;
+  margin: 1px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+</style>
    <div class="modal fade" id="modal-xl">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -497,7 +498,16 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>One fine body&hellip;</p>
+              <table>
+              <form>
+                  <tr><td><label for="fname">Tipe Produk</label>
+                      <input type="text" id="fname" name="fname" value="John"></td>
+                  </tr>
+                  <tr><td><label for="lname">Barcode</label>
+                      <input type="text" id="lname" name="lname" value="Doe"></td>
+                  </tr>
+              </form>
+              </table>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
