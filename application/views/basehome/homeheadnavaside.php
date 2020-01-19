@@ -184,7 +184,7 @@
               </li>
             -->
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>" class="nav-link active">
+                <a href="<?php echo base_url(); ?>" class="nav-link activea">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home</p>
                 </a>
@@ -270,7 +270,7 @@
             </a>
             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
+                <a href="<?php echo base_url('produk/insert'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Barang</p>
                 </a>

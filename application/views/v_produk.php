@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<?php include('basehome/headdata.php'); ?>
+<?php 
+include('basehome/headdata.php'); 
+//include ('basehome/homeheadnavaside.php');
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
