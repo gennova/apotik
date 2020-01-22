@@ -1,18 +1,24 @@
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Admin Apotik| Dashboard Home</title>
-
-  <!-- Font Awesome Icons -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css'); ?>">
+  <!-- Font Awesome Icons 
   <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>-->
   <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/fontawesome-free/css/all.min.css'); ?>">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/dist/css/adminlte.min.css'); ?>">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
+    <!-- Toastr -->
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/toastr/toastr.min.css'); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -28,12 +34,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo base_url(); ?>" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
     </ul>
 
-    <!-- SEARCH FORM -->
+    <!-- SEARCH FORM 
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -44,7 +47,7 @@
         </div>
       </div>
     </form>
-
+    -->
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
@@ -184,7 +187,7 @@
               </li>
             -->
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>" class="nav-link active">
+                <a href="<?php echo base_url(); ?>" class="nav-link activea">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home</p>
                 </a>
@@ -270,7 +273,7 @@
             </a>
             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
+                <a href="<?php echo base_url('produk'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Barang</p>
                 </a>
