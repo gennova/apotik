@@ -20,6 +20,14 @@ include ('basehome/homeheadnavaside.php');
               <div class="card-header" style="padding: 0.25rem 0.25rem">
                 <h3 class="card-title">Data Produk</h3>
               </div>
+              <div ng-app='myapp' ng-controller="userCtrl">    
+              <input type="text" name="nama" ng-model="namanya">
+                <span ng-switch="namanya">
+                  <span ng-switch-when="mail">{{namaku}}</span>
+                  <span ng-switch-when="system">{{namaku2}}</span>
+                  <span ng-switch-default>{{}}</span>
+                </span>
+              </div>
               <div class="card-body" style="padding: 0.25rem"> 
                 <div class="row">                        
                  <div class="col-4">
@@ -32,43 +40,45 @@ include ('basehome/homeheadnavaside.php');
                   <div class="row">
                   <div class="col-4">
                     Tipe Produk <br>
-                        <select class="form-control form-control-sm" name="tipeproduk">
-                          <option value="Obat">Obat</option>
-                          <option value="Jasa">Jasa</option>
+                        <select class="form-control form-control-sm">
+                          <option>Obat</option>
+                          <option>Jasa</option>
                         </select>   
                   </div>
                   <div class="col-4">
                     Golongan Margin <br>
-                        <select class="form-control form-control-sm" name="golonganmargin">
-                          <option value="Generik">Generik</option>
-                          <option value="HV">HV</option>
-                          <option value=""Paten Keras>Paten Keras</option>
-                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>
+                        <select class="form-control form-control-sm">
+                          <option>Generik</option>
+                          <option>HV</option>
+                          <option>Paten Keras</option>
+                          <option>Psiko & Narkotik</option>
                         </select>   
                   </div>
                   <div class="col-4">
                     Golongan Produk <br>
-                        <select class="form-control form-control-sm" name="golonganproduk">
+                        <select class="form-control form-control-sm">
                           <?php foreach ($golongans as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namagolongan.'</option>'; }?>                          
+                          echo '<option>'.$item->namagolongan.'</option>'; }?>                          
                         </select>   
                   </div>
                 </div>  <!-- end class row -->      
                   <div class="row">
                   <div class="col-4">
                     Min. Stok <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="minstok">
+                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk">
                   </div>
                   <div class="col-4">
                     Rak <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="rak">
+                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk">
                   </div>
                   <div class="col-4">
                     Pemakaian Obat <br>
-                        <select class="form-control form-control-sm" name="pemakaianobat">
-                          <option value="Umum">Umum</option>
-                          <option value="Obat Luar">Obat Luar</option>
-                          <option value="Obat Dalam">Obat Dalam</option>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->       
@@ -76,28 +86,28 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="col-4">
                     Stok Awal <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="stokawal">
+                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk">
                   </div>
                   <div class="col-4">
                     Expirate Date <br>
-                    <input type="text" name="expiratedate" class="form-control form-control-sm datepicker" />
+                    <input type="text" class="form-control form-control-sm datepicker" />
                   </div>
                   <div class="col-4">
                     No Batch <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" batch no" name="nobatch">
+                        <input class="form-control form-control-sm" type="text" placeholder=" batch no">
 
                   </div>
                 </div>  <!-- end class row -->
                                  <div class="row">  
                  <div class="col-4">
                   Status <br>
-                        <select class="form-control form-control-sm" name="statusobat">
-                          <option value="Aktif">Aktif</option>
-                          <option value="Tidak Aktif">Tidak Aktif</option>
+                        <select class="form-control form-control-sm">
+                          <option>Aktif</option>
+                          <option>Tidak Aktif</option>
                         </select>   
                 </div>
                  <div class="col-8">
-                  Keterangan <input class="form-control form-control-sm" type="text" placeholder="keterangan"name="keterangan">
+                  Keterangan <input class="form-control form-control-sm" type="text" placeholder="keterangan">
                  </div>
                 </div> 
               </div>
@@ -113,35 +123,44 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="col-4">
                     Kemasan Dasar <br>
-                        <select class="form-control form-control-sm" name="kemasandasar">
-                           <?php foreach ($kemasan as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>'; }?>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                   <div class="col-4">
                     Kemasan Lain <br>
-                        <select class="form-control form-control-sm" name="kemasan2">
-                          <?php foreach ($kemasan as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>'; }?>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                   <div class="col-4">
                     Kemasan Lain <br>
-                        <select class="form-control form-control-sm" name="kemasan3">
-                          <?php foreach ($kemasan as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>'; }?>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->    
                 <div class="row">  
                  <div class="col-4">
-                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="1" name="isi1">
+                  <input class="form-control form-control-sm" type="text" placeholder="isi">
                 </div>
                  <div class="col-4">
-                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="1" name="isi2">
+                  <input class="form-control form-control-sm" type="text" placeholder="isi">
                  </div>
                  <div class="col-4">
-                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="1" name="isi3">
+                  <input class="form-control form-control-sm" type="text" placeholder="isi">
                  </div>
                 </div> 
               </div>
@@ -168,32 +187,32 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="col-4">
                     Farmakologi <br>
-                        <select class="form-control form-control-sm" name="farmakologi">
-                          <option value="1">option 1</option>
-                          <option value="2">option 2</option>
-                          <option value="3">option 3</option>
-                          <option value="4">option 4</option>
-                          <option value="5">option 5</option>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                   <div class="col-4">
                     Kategori <br>
-                        <select class="form-control form-control-sm" name="kategori">
-                          <option value="1">option 1</option>
-                          <option value="2">option 2</option>
-                          <option value="3">option 3</option>
-                          <option value="4">option 4</option>
-                          <option value="5">option 5</option>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                   <div class="col-4">
                     Sub Kategori <br>
-                        <select class="form-control form-control-sm" name="subkategori">
-                          <option value="1">option 1</option>
-                          <option value="2">option 2</option>
-                          <option value="3">option 3</option>
-                          <option value="4">option 4</option>
-                          <option value="5">option 5</option>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->               
@@ -210,53 +229,53 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="form-group">
                         Kandungan
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="kandungannya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
                   </div>
                   <div class="form-group">
                         Indikasi
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="indikasinya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
                   </div>
                   <div class="form-group">
                         Kontra Indikasi
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="kontraindikasinya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
                   </div>
                   <div class="form-group">
                         Efek Samping
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="efeksampingannya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
                   </div>
               </div>
                <div class="row">
                   <div class="form-group">
                         Dosis
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="dosisnya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
                   </div>
                   <div class="form-group">
                         Aturan Pakai
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="aturanpakainya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-6">
                      <div class="form-group">
                         FDA Pregnancy<br>
-                        <select class="form-control form-control-sm" name="fdapregnancy">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="X">X</option>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                      </div>
                   </div>
                   <div class="col-6">
                      <div class="form-group">
                         FDA Latency<br>
-                        <select class="form-control form-control-sm" name="fdalatency">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="X">X</option>
+                        <select class="form-control form-control-sm">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
                         </select>   
                      </div>
                   </div>
@@ -277,7 +296,7 @@ include ('basehome/homeheadnavaside.php');
                 <h3 class="card-title">Harga Obat</h3>
               </div>
               <div class="card-body" style="padding: 0.25rem">  
-                <div class="row" ng-app="" ng-init="resep='10';nonresep='10'" >
+                <div class="row">
                   <div class="col-2">
                     Harga<br>
                         <select class="form-control form-control-sm">
@@ -287,23 +306,24 @@ include ('basehome/homeheadnavaside.php');
                   </div>
                   <div class="col-2">
                     HNA
-                        <input class="form-control form-control-sm" type="text" placeholder="HNA" ng-model="HNA" >
+                        <input class="form-control form-control-sm" type="text" placeholder="HNA">
                   </div><div class="col-2">
                     Margin resep (%)
-                        <input class="form-control form-control-sm" type="text" value="{{resep}}" placeholder="margin resep (%)" ng-model="resep">
+                        <input class="form-control form-control-sm" type="text" value="10" placeholder="margin resep (%)">
                   </div>
                   <div class="col-2">
                     Margin non resep (%)
-                        <input class="form-control form-control-sm" type="text" value="{{nonresep}}" placeholder="margin non resep (%)" ng-model="nonresep">
+                        <input class="form-control form-control-sm" type="text" value="10" placeholder="margin non resep (%)">
                   </div>
                   <div class="col-2">
                     Harga jual Rp.
-                        <input class="form-control form-control-sm" type="text" placeholder="harga jual" value="{{(HNA * 1) + ((HNA * 1)*(resep/100)) }}">
+                        <input class="form-control form-control-sm" type="text" placeholder="harga jual">
                   </div>
                   <div class="col-2">
                     Harga jual non resep Rp.
-                        <input class="form-control form-control-sm" type="text" placeholder="harga jual non resep" value="{{(HNA * 1) + ((HNA * 1)*(nonresep/100)) }}">
-                  </div>                  
+                        <input class="form-control form-control-sm" type="text" placeholder="harga jual non resep">
+                  </div>
+
                 </div>
 
               </div>
@@ -476,15 +496,4 @@ fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
  });
 }]);
 
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-  $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
 </script>

@@ -1,7 +1,7 @@
  <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | DataTables</title>
+  <titleAdmin Apotik| Dashboard Home</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?php echo base_url('asetku/bootstrap-datepicker/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet">
@@ -32,12 +32,10 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index3.html" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+
     </ul>
 
-    <!-- SEARCH FORM -->
+    <!-- SEARCH FORM 
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -48,6 +46,7 @@
         </div>
       </div>
     </form>
+    -->
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
