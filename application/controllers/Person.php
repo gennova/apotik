@@ -7,12 +7,17 @@ class Person extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('person_model','person');
+		$this->load->model('m_invoice');
+		$this->load->helper('rupiah_helper');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 	}
 
 	public function index()
-	{
+	{	
+		$x['invoice']=$this->m_invoice->get_no_invoice();
 		$this->load->helper('url');
-		$this->load->view('person_view');
+		$this->load->view('person_view',$x);
 	}
 
 	public function ajax_list()
@@ -24,14 +29,14 @@ class Person extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $person->firstName;
+			$row[] = $person->middleName;
 			$row[] = $person->lastName;
 			$row[] = $person->gender;
 			$row[] = $person->address;
 			$row[] = $person->dob;
 
 			//add html for action
-			$row[] = '<a class="btn btn-xs btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-xs btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+			$row[] = '<a class="btn btn-xs btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 		
 			$data[] = $row;
 		}
@@ -57,7 +62,9 @@ class Person extends CI_Controller {
 	{
 		$this->_validate();
 		$data = array(
+				'transaksi' => $this->m_invoice->get_no_invoice(),
 				'firstName' => $this->input->post('firstName'),
+				'middleName' => $this->input->post('middleName'),
 				'lastName' => $this->input->post('lastName'),
 				'gender' => $this->input->post('gender'),
 				'address' => $this->input->post('address'),
@@ -99,6 +106,13 @@ class Person extends CI_Controller {
 		{
 			$data['inputerror'][] = 'firstName';
 			$data['error_string'][] = 'First name is required';
+			$data['status'] = FALSE;
+		}
+
+		if($this->input->post('middleName') == '')
+		{
+			$data['inputerror'][] = 'middleName';
+			$data['error_string'][] = 'Middle name is required';
 			$data['status'] = FALSE;
 		}
 

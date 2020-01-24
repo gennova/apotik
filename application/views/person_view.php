@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ajax CRUD with Bootstrap modals and Datatables</title>
+    <title>APOTIK PENJUALAN ECERAN</title>
     <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
@@ -13,44 +13,143 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+    <style type="text/css">
+        .dataTables_filter {
+        display: none;
+    }
+    .dataTables_length {
+        display: none;
+    }
+    </style>
     </head> 
 <body>
     <div class="container">
-        <h3>Person Data</h3>
+        <h3>Penjualan Eceran</h3>
+        <!-- <input type="text" name="no_invoice" value="<?php echo $invoice;?>">-->      
+        <?php echo validation_errors(); ?> 
+        <?php echo form_open('transaksi/save'); ?>
+        <div class="col-sm-6" style="padding: 1px">
+                <div class="col-sm-3">
+             <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px; width: 100%">KODE TRX</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="kodetransaksinya" placeholder="Pelanggan" class="form-control" type="text"  value="<?php echo $invoice;?>" readonly>
+            </div>
+        </div> 
+        <div class="col-sm-12" style="padding-top: 10px"></div>
+        <div class="col-sm-3">
+             <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Pelanggan</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="namapelanggan" placeholder="Pelanggan" class="form-control" type="text">
+            </div>
+        </div> 
+        <div class="col-sm-3">
+            <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Tipe DO</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="tipedo" placeholder="Tipe DO" class="form-control" type="text">
+            </div>
+        </div> 
+        <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Cara Bayar</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="carabayar" placeholder="Cara bayar" class="form-control" type="text">
+            </div>
+        </div> 
+        <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Keterangan</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="keterangan" placeholder="Keterangan" class="form-control" type="text">
+            </div>
+        </div> 
+        <div class="col-md-3" style="padding: 0px;padding-left: 20px">
+            <button type="submit" id="btnSave" class="btn btn-success">&nbsp &nbsp &nbsp &nbsp Save&nbsp &nbsp &nbsp &nbsp</button>            
+        </div>
+        </div>  
+        
+        <div class="col-sm-6">
+        TOTAL <h1><input type="text" name="totalbayar" id="totalbayar">Rp.<h1>
+        </div>   
+        <input type="hidden" name="totalbayarnonformat" id="totalbayarnonformat">   
+        <?php         
+         echo form_close();
+         ?>
+        <form action="#" id="form">
+            <div class="col-sm-12">
+                <div class="form-body">
+                        <div class="form-group">                            
+                            <div class="col-md-3" style="padding: 1px">
+                                <input name="firstName" placeholder="Barang" class="form-control" type="text">      
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">                            
+                            <div class="col-md-1" style="padding: 1px">
+                                <input name="middleName" placeholder="Stok" class="form-control" type="text">
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">                           
+                            <div class="col-md-2" style="padding: 1px">
+                                <input name="lastName" placeholder="Harga Jual" class="form-control" type="text">
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">                            
+                            <div class="col-md-1" style="padding: 1px">
+                                <input name="gender" id="jumlah" value="1" placeholder="Jumlah" class="form-control" type="text">                               
+                            </div>                            
+                        </div>
+                        <div class="col-md-1" style="padding: 1px">
+                               <button type="button" id="btnSave" onclick="minus()" class="btn btn-primary">-</button> <button type="button" id="btnSave" onclick="added()" class="btn btn-primary">+</button>
+                            </div>
+                        <div class="form-group">                            
+                            <div class="col-md-2" style="padding: 1px">
+                                <input name="address" placeholder="Diskon" class="form-control" type="text">                               
+                            </div>
+                        </div>
+                        <div class="form-group">                            
+                            <div class="col-md-1" style="padding: 1px">
+                                <input name="dob" id="dob" class="form-control"  placeholder="Total" type="text">
+                            </div>
+                        </div>
+
+                            <div class="col-md-1" style="padding: 1px">
+                               <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">ADD</button>
+                            </div>
+                        
+                    </div>                   
+                </div>
+
+                    <!-- <input type="hidden" value="" name="id"/> -->
+                    
+
+                </form>
+         <div class="col-sm-12">
+
         <br />
-        <button class="btn btn-success btn-xs" onclick="add_person()"><i class="glyphicon glyphicon-plus" ></i> Add Person</button>
-        <button class="btn btn-default btn-xs" onclick="reload_table()"><i class="glyphicon glyphicon-refresh btn-xs"></i> Reload</button>
-        <br />
-        <br />
+         
         <table id="table" class="table table-condensed"  cellspacing="0" width="100%">
             <thead>
                 <tr style="height: 10px;">
-                    <th >First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>
-                    <th>Address</th>
-                    <th>Date of Birth</th>
-                    <th style="width:125px;">Action</th>
+                    <th >Barang</th>
+                    <th>Stok</th>
+                    <th>Harga Jual</th>
+                    <th>Qty</th>
+                    <th>Diskon</th>
+                    <th>Total</th>
+                    <th style="width:50px;">Action</th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
-<!--
-            <tfoot>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Gender</th>
-                <th>Address</th>
-                <th>Date of Birth</th>
-                <th>Action</th>
-            </tr>
-            </tfoot>
--->
-        </table>
-    </div>
+        </table></div>
 
+    </div>
 <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
@@ -64,7 +163,7 @@ var save_method; //for save method string
 var table;
 
 $(document).ready(function() {
-
+    //console.log('DOING THIS FIRST');
     //datatables
     table = $('#table').DataTable({ 
 
@@ -143,6 +242,7 @@ function edit_person(id)
 
             $('[name="id"]').val(data.id);
             $('[name="firstName"]').val(data.firstName);
+            $('[name="middleName"]').val(data.middleName);
             $('[name="lastName"]').val(data.lastName);
             $('[name="gender"]').val(data.gender);
             $('[name="address"]').val(data.address);
@@ -162,11 +262,16 @@ function reload_table()
 {
     table.ajax.reload(null,false); //reload datatable ajax 
 }
-
+var totalbayar=0;
 function save()
 {
-    $('#btnSave').text('saving...'); //change button text
-    $('#btnSave').attr('disabled',true); //set button disable 
+    console.log('save');   
+    var x = parseInt(document.getElementById("dob").value);
+    totalbayar = totalbayar + x;
+    console.log(totalbayar);
+    document.getElementById('totalbayarnonformat').value=totalbayar;
+    document.getElementById('totalbayar').value=new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(totalbayar);
+    save_method = 'add'; 
     var url;
 
     if(save_method == 'add') {
@@ -197,10 +302,6 @@ function save()
                     $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
                 }
             }
-            $('#btnSave').text('save'); //change button text
-            $('#btnSave').attr('disabled',false); //set button enable 
-
-
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -210,6 +311,9 @@ function save()
 
         }
     });
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string   
 }
 
 function delete_person(id)
@@ -235,6 +339,25 @@ function delete_person(id)
 
     }
 }
+var i = document.getElementById("jumlah").value;
+
+function minus(){ 
+    if (i > 1) {
+            --i;
+        }else {
+            document.getElementById("jumlah").value = 1;
+        }
+    document.getElementById("jumlah").value = i;
+    console.log(i);
+}
+
+function added(){ 
+    if (i >= -100) {
+            ++i;
+        }
+    document.getElementById("jumlah").value = i;
+    console.log(i);
+}
 
 </script>
 
@@ -247,50 +370,7 @@ function delete_person(id)
                 <h3 class="modal-title">Person Form</h3>
             </div>
             <div class="modal-body form">
-                <form action="#" id="form" class="form-horizontal">
-                    <input type="hidden" value="" name="id"/> 
-                    <div class="form-body">
-                        <div class="form-group">
-                            <label class="control-label col-md-3">First Name</label>
-                            <div class="col-md-9">
-                                <input name="firstName" placeholder="First Name" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Last Name</label>
-                            <div class="col-md-9">
-                                <input name="lastName" placeholder="Last Name" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Gender</label>
-                            <div class="col-md-9">
-                                <select name="gender" class="form-control">
-                                    <option value="">--Select Gender--</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Address</label>
-                            <div class="col-md-9">
-                                <textarea name="address" placeholder="Address" class="form-control"></textarea>
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Date of Birth</label>
-                            <div class="col-md-9">
-                                <input name="dob" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+               
             </div>
             <div class="modal-footer">
                 <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
