@@ -71,7 +71,7 @@
         </div>  
         
         <div class="col-sm-6">
-        TOTAL <h1><input type="text" name="totalbayar" id="totalbayar">Rp.<h1>
+        TOTAL <h1><input type="text" name="totalbayar" id="totalbayar"><h1>
         </div>   
         <input type="hidden" name="totalbayarnonformat" id="totalbayarnonformat">   
         <?php         
