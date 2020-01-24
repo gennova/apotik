@@ -14,7 +14,7 @@ include ('basehome/homeheadnavaside.php');
           <div class="col-md-6">
             <!-- general form elements -->
             <?php echo validation_errors(); ?>
-            <?php echo form_open('produk/insert'); ?>
+            <?php echo form_open('produk/update_process/'.$produks['produk_id'].'/'.$produks['barcode']); ?>
             <!-- Form Element sizes -->
             <div class="card card-success">
               <div class="card-header" style="padding: 0.25rem 0.25rem">
@@ -23,52 +23,93 @@ include ('basehome/homeheadnavaside.php');
               <div class="card-body" style="padding: 0.25rem"> 
                 <div class="row">                        
                  <div class="col-4">
-                  Barcode <input class="form-control form-control-sm" type="text"name="barcode" id="myInput" placeholder=" kode barcode produk" autocomplete="off">
+                  Barcode <input class="form-control form-control-sm" type="text"name="barcode" id="myInput" placeholder=" kode barcode produk" autocomplete="off" value="<?php echo $produks['barcode']; ?>">
                 </div>
                  <div class="col-8">
-                  Nama <input class="form-control form-control-sm" type="text" name="namaproduk" placeholder="nama produk" id="namaproduk">
+                  Nama <input class="form-control form-control-sm" type="text" name="namaproduk" placeholder="nama produk" id="namaproduk" value="<?php echo $produks['namaproduk']; ?>">
                  </div>
                 </div> 
                   <div class="row">
                   <div class="col-4">
                     Tipe Produk <br>
                         <select class="form-control form-control-sm" name="tipeproduk">
-                          <option value="Obat">Obat</option>
-                          <option value="Jasa">Jasa</option>
+                          <?php
+                          if($produks['tipeproduk']=="Obat"){
+                             echo '<option value="Obat" selected>Obat</option><option value="Jasa">Jasa</option>';
+                          }else{
+                             echo '<option value="Obat" >Obat</option><option value="Jasa" selected>Jasa</option>';
+                          }
+                          ?>
                         </select>   
                   </div>
                   <div class="col-4">
                     Golongan Margin <br>
                         <select class="form-control form-control-sm" name="golonganmargin">
-                          <option value="Generik">Generik</option>
+                          <?php
+                          if($produks['golonganmargin']=="Generik"){
+                            echo '<option value="Generik" selected>Generik</option>
                           <option value="HV">HV</option>
                           <option value=""Paten Keras>Paten Keras</option>
-                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>
+                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>';
+                          }else if ($produks['golonganmargin']=="HV"){
+                              echo '<option value="Generik">Generik</option>
+                          <option value="HV" selected>HV</option>
+                          <option value=""Paten Keras>Paten Keras</option>
+                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>';
+                          }else if ($produks['golonganmargin']=="Paten Keras"){
+                              echo '<option value="Generik">Generik</option>
+                          <option value="HV" >HV</option>
+                          <option value=""Paten Keras selected>Paten Keras</option>
+                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>';
+                          }else if ($produks['golonganmargin']=="Psiko & Narkotika"){
+                              echo '<option value="Generik">Generik</option>
+                          <option value="HV" >HV</option>
+                          <option value=""Paten Keras >Paten Keras</option>
+                          <option value="Psiko & Narkotika" selected>Psiko & Narkotik</option>';
+                          }
+                          ?>
                         </select>   
                   </div>
                   <div class="col-4">
                     Golongan Produk <br>
                         <select class="form-control form-control-sm" name="golonganproduk">
                           <?php foreach ($golongans as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namagolongan.'</option>'; }?>                          
+                            if($item->id == $produks['golonganproduk']){
+                              echo '<option value="'.$item->id.'" selected>'.$item->namagolongan.'</option>';
+                            }else {
+                              echo '<option value="'.$item->id.'">'.$item->namagolongan.'</option>';
+                            }
+                           }?>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->      
                   <div class="row">
                   <div class="col-4">
                     Min. Stok <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="minstok">
+                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="minstok" value="<?php echo $produks['minstok']; ?>">
                   </div>
                   <div class="col-4">
                     Rak <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="rak">
+                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="rak" value="<?php echo $produks['rak']; ?>">
                   </div>
                   <div class="col-4">
                     Pemakaian Obat <br>
                         <select class="form-control form-control-sm" name="pemakaianobat">
-                          <option value="Umum">Umum</option>
-                          <option value="Obat Luar">Obat Luar</option>
-                          <option value="Obat Dalam">Obat Dalam</option>
+                          <?php                          
+                            if($produks['pemakaianobat']=="Umum"){
+                              echo '<option value="Umum" selected>Umum</option>';
+                              echo '<option value="Obat Luar">Obat Luar</option>';
+                              echo '<option value="Obat Dalam">Obat Dalam</option>';
+                            }else if($produks['pemakaianobat']=="Obat Luar") {
+                              echo '<option value="Umum">Umum</option>';
+                              echo '<option value="Obat Luar" selected>Obat Luar</option>';
+                              echo '<option value="Obat Dalam">Obat Dalam</option>';
+                            }else if($produks['pemakaianobat']=="Obat Dalam") {
+                              echo '<option value="Umum">Umum</option>';
+                              echo '<option value="Obat Luar">Obat Luar</option>';
+                              echo '<option value="Obat Dalam" selected>Obat Dalam</option>';
+                            }
+                          ?>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->       
@@ -76,15 +117,15 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="col-4">
                     Stok Awal <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="stokawal">
+                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="stokawal" value="<?php echo $produks['stokawal']; ?>">
                   </div>
                   <div class="col-4">
                     Expirate Date <br>
-                    <input type="text" name="expiratedate" class="form-control form-control-sm datepicker" />
+                    <input type="text" name="expiratedate" class="form-control form-control-sm datepicker" value="<?php echo $produks['expiratedate']; ?>"/>
                   </div>
                   <div class="col-4">
                     No Batch <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" batch no" name="nobatch">
+                        <input class="form-control form-control-sm" type="text" placeholder=" batch no" name="nobatch" value="<?php echo $produks['nobatch']; ?>">
 
                   </div>
                 </div>  <!-- end class row -->
@@ -92,12 +133,18 @@ include ('basehome/homeheadnavaside.php');
                  <div class="col-4">
                   Status <br>
                         <select class="form-control form-control-sm" name="statusobat">
-                          <option value="Aktif">Aktif</option>
-                          <option value="Tidak Aktif">Tidak Aktif</option>
+                          <?php
+                          
+                            if($produks['statusobat']=="Aktif"){
+                              echo '<option value="Aktif" selected>Aktif</option>';
+                            }else {
+                               echo '<option value="Tidak Aktif">Tidak Aktif</option>';
+                            }                          
+                          ?>
                         </select>   
                 </div>
                  <div class="col-8">
-                  Keterangan <input class="form-control form-control-sm" type="text" placeholder="keterangan"name="keterangan">
+                  Keterangan <input class="form-control form-control-sm" type="text" placeholder="keterangan"name="keterangan" value="<?php echo $produks['keterangan']; ?>">
                  </div>
                 </div> 
               </div>
@@ -115,33 +162,46 @@ include ('basehome/homeheadnavaside.php');
                     Kemasan Dasar <br>
                         <select class="form-control form-control-sm" name="kemasandasar">
                            <?php foreach ($kemasan as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>'; }?>
+                            if($item->id == $produks['kemasandasar']){
+                              echo '<option value="'.$item->id.'" selected>'.$item->namakemasan.'</option>';
+                            }else {
+                              echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>';
+                            }
+                           }
+                           ?>
                         </select>   
                   </div>
                   <div class="col-4">
                     Kemasan Lain <br>
                         <select class="form-control form-control-sm" name="kemasan2">
                           <?php foreach ($kemasan as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>'; }?>
+                            if($item->id == $produks['isi2']){
+                              echo '<option value="'.$item->id.'" selected>'.$item->namakemasan.'</option>';
+                            }else{
+                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>';
+                          } }?>
                         </select>   
                   </div>
                   <div class="col-4">
                     Kemasan Lain <br>
                         <select class="form-control form-control-sm" name="kemasan3">
                           <?php foreach ($kemasan as $item) { 
-                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>'; }?>
+                            if($item->id == $produks['isi3']){
+                              echo '<option value="'.$item->id.'" selected>'.$item->namakemasan.'</option>';
+                            }else {
+                          echo '<option value="'.$item->id.'">'.$item->namakemasan.'</option>';} }?>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->    
                 <div class="row">  
                  <div class="col-4">
-                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="1" name="isi1">
+                  <input class="form-control form-control-sm" type="text" placeholder="isi" name="isi1" value="<?php echo $produks['isidasar']; ?>">
                 </div>
                  <div class="col-4">
-                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="1" name="isi2">
+                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="<?php echo $produks['isi2']; ?>" name="isi2">
                  </div>
                  <div class="col-4">
-                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="1" name="isi3">
+                  <input class="form-control form-control-sm" type="text" placeholder="isi" value="<?php echo $produks['isi3']; ?>" name="isi3">
                  </div>
                 </div> 
               </div>
@@ -169,31 +229,43 @@ include ('basehome/homeheadnavaside.php');
                   <div class="col-4">
                     Farmakologi <br>
                         <select class="form-control form-control-sm" name="farmakologi">
-                          <option value="1">option 1</option>
-                          <option value="2">option 2</option>
-                          <option value="3">option 3</option>
-                          <option value="4">option 4</option>
-                          <option value="5">option 5</option>
+                          <?php
+                          for($i=1;$i<6;$i++){
+                            if($i == $produks['farmakologi']){
+                              echo '<option value="'.$i.'" selected>option '.$i.'</option>';
+                            }else {
+                               echo '<option value="'.$i.'">option '.$i.'</option>';
+                            }
+                          }
+                          ?>
                         </select>   
                   </div>
                   <div class="col-4">
                     Kategori <br>
                         <select class="form-control form-control-sm" name="kategori">
-                          <option value="1">option 1</option>
-                          <option value="2">option 2</option>
-                          <option value="3">option 3</option>
-                          <option value="4">option 4</option>
-                          <option value="5">option 5</option>
+                          <?php
+                          for($i=1;$i<6;$i++){
+                            if($i == $produks['kategori']){
+                              echo '<option value="'.$i.'" selected>option '.$i.'</option>';
+                            }else {
+                               echo '<option value="'.$i.'">option '.$i.'</option>';
+                            }
+                          }
+                          ?>
                         </select>   
                   </div>
                   <div class="col-4">
                     Sub Kategori <br>
                         <select class="form-control form-control-sm" name="subkategori">
-                          <option value="1">option 1</option>
-                          <option value="2">option 2</option>
-                          <option value="3">option 3</option>
-                          <option value="4">option 4</option>
-                          <option value="5">option 5</option>
+                          <?php
+                          for($i=1;$i<6;$i++){
+                            if($i == $produks['subkategori']){
+                              echo '<option value="'.$i.'" selected>option '.$i.'</option>';
+                            }else {
+                               echo '<option value="'.$i.'">option '.$i.'</option>';
+                            }
+                          }
+                          ?>
                         </select>   
                   </div>
                 </div>  <!-- end class row -->               
@@ -210,29 +282,29 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="form-group">
                         Kandungan
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="kandungannya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="kandungannya"><?php echo $produks['kandungan']; ?></textarea>
                   </div>
                   <div class="form-group">
                         Indikasi
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="indikasinya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="indikasinya"><?php echo $produks['indikasi']; ?></textarea>
                   </div>
                   <div class="form-group">
                         Kontra Indikasi
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="kontraindikasinya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="kontraindikasinya"><?php echo $produks['kontraindikasi']; ?></textarea>
                   </div>
                   <div class="form-group">
                         Efek Samping
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="efeksampingannya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="efeksampingannya"><?php echo $produks['efeksamping']; ?></textarea>
                   </div>
               </div>
                <div class="row">
                   <div class="form-group">
                         Dosis
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="dosisnya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="dosisnya" ><?php echo $produks['dosis']; ?></textarea>
                   </div>
                   <div class="form-group">
                         Aturan Pakai
-                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="aturanpakainya"></textarea>
+                        <textarea class="form-control" rows="1" placeholder="Enter ..." name="aturanpakainya"><?php echo $produks['aturanpakai']; ?></textarea>
                   </div>
                 </div>
                 <div class="row">
@@ -240,11 +312,39 @@ include ('basehome/homeheadnavaside.php');
                      <div class="form-group">
                         FDA Pregnancy<br>
                         <select class="form-control form-control-sm" name="fdapregnancy">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="X">X</option>
+                          <?php                          
+                            if($produks['fdapregnancy']=="A"){
+                              echo '<option value="A" selected>A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdapregnancy']=="B"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B" selected>B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdapregnancy']=="C"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C" selected>C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdapregnancy']=="D"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D" selected>D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdapregnancy']=="X"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X" selected>X</option>';
+                            }
+                          ?>
                         </select>   
                      </div>
                   </div>
@@ -252,11 +352,39 @@ include ('basehome/homeheadnavaside.php');
                      <div class="form-group">
                         FDA Latency<br>
                         <select class="form-control form-control-sm" name="fdalatency">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="X">X</option>
+                          <?php                          
+                            if($produks['fdalatency']=="A"){
+                              echo '<option value="A" selected>A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdalatency']=="B"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B" selected>B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdalatency']=="C"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C" selected>C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdalatency']=="D"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D" selected>D</option>';
+                              echo '<option value="X">X</option>';
+                            }else if($produks['fdalatency']=="X"){
+                              echo '<option value="A">A</option>';
+                              echo '<option value="B">B</option>';
+                              echo '<option value="C">C</option>';
+                              echo '<option value="D">D</option>';
+                              echo '<option value="X" selected>X</option>';
+                            }
+                          ?>
                         </select>   
                      </div>
                   </div>
@@ -277,7 +405,7 @@ include ('basehome/homeheadnavaside.php');
                 <h3 class="card-title">Harga Obat</h3>
               </div>
               <div class="card-body" style="padding: 0.25rem">  
-                <div class="row" ng-app="" ng-init="resep='10';nonresep='10'" >
+                <div class="row" ng-app="" ng-init="resep='10';nonresep='10';HNA='<?php echo $hargaproduk['HNA']; ?>'" >
                   <div class="col-2">
                     Harga<br>
                         <select class="form-control form-control-sm" name="jenisharga">
@@ -286,7 +414,7 @@ include ('basehome/homeheadnavaside.php');
                         </select> 
                   </div>
                   <div class="col-2">
-                    HNA
+                    HNA 
                         <input class="form-control form-control-sm" type="text" placeholder="HNA" ng-model="HNA" name="hnanya">
                   </div><div class="col-2">
                     Margin resep (%)
@@ -302,7 +430,7 @@ include ('basehome/homeheadnavaside.php');
                   </div>
                   <div class="col-2">
                     Harga jual non resep Rp.
-                        <input class="form-control form-control-sm" type="text" placeholder="harga jual non resep" value="{{(HNA * 1) + ((HNA * 1)*(nonresep/100)) }}" name="hargajualnonresepnya">
+                        <input class="form-control form-control-sm" type="text" placeholder="harga jual non resep" value="{{(HNA * 1) + ((HNA * 1)*(nonresep/100)) }}" name="hargajualnonresepnya" value="90">
                   </div>                  
                 </div>
 
@@ -488,3 +616,5 @@ fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
   });
 });
 </script>
+
+

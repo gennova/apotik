@@ -20,7 +20,7 @@ include ('basehome/homeheadnavaside.php');
     <section class="content">
       <div class="row">
         <div class="col-12">
-          DATA PRODUK
+          DATA PRODUK          
           <!-- /.card -->
           <div class="card">
             <div class="card-header">
@@ -44,6 +44,7 @@ include ('basehome/homeheadnavaside.php');
                 </button>
               -->
             </div>
+
             <!-- /.card-header -->
             <div class="card-body" style="padding: 0.5rem">
               <table id="example1" class="table table-bordered table-striped table-hover" style="line-height: 1px">
@@ -56,14 +57,14 @@ include ('basehome/homeheadnavaside.php');
                   <th>Rak</th>
                   <th>Stok</th>
                   <th>Expirate</th>
-                  <th>DELETE</th>
-                  <th>UPDATE</th>
+                  <th>Harga</th>
+                  <th>ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
                   foreach ($produks as $key) {
-                    echo "<tr><td>".$key->barcode."</td><td>".$key->namaproduk."</td><td>".$key->tipeproduk."</td><td>".$key->golonganmargin."</td><td>".$key->rak."</td><td>".$key->stokawal."</td><td>".$key->expiratedate."</td><td><a href='#'>DELETE</a></td><td><a href='produk/update'>UPDATE</a></td></tr>";
+                    echo "<tr><td>".$key->barcode."</td><td>".$key->namaproduk."</td><td>".$key->tipeproduk."</td><td>".$key->golonganmargin."</td><td>".$key->rak."</td><td>".$key->stokawal."</td><td>".$key->expiratedate."</td><td>Rp. ".rupiah($key->hargajual)."</td><td><a href='".base_url('produk/delete/').$key->produk_id."' id='btn_delete' onclick='data()'><font color='RED'>DELETE</font></a>  <a href='".base_url('produk/update/').$key->produk_id."'>UPDATE</a></td></tr>";
                   }
                   ?>
                 </tbody>
