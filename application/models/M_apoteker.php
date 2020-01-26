@@ -18,27 +18,27 @@ class M_apoteker extends CI_Model{
 		$result=$this->db->insert('apoteker',$data);
 		return $result;
 	}
-	
+
 	function updateEmp(){
 		$id=$this->input->post('id');
-		$name=$this->input->post('name');
-		$age=$this->input->post('age');
-		$designation=$this->input->post('designation');
-		$skills=$this->input->post('skills');
-		$address=$this->input->post('address');
-		$this->db->set('name', $name);
-		$this->db->set('age', $age);
-		$this->db->set('designation', $designation);
-		$this->db->set('skills', $skills);
-		$this->db->set('address', $address);
+		$nojasa=$this->input->post('nojasa');
+		$namajasa=$this->input->post('namajasa');
+		$nominal=$this->input->post('nominal');
+		$status=$this->input->post('status');
+		$keterangan=$this->input->post('keterangan');
+		$this->db->set('nojasa', $nojasa);
+		$this->db->set('namajasa', $namajasa);
+		$this->db->set('nominal', $nominal);
+		$this->db->set('status', $status);
+		$this->db->set('keterangan', $keterangan);
 		$this->db->where('id', $id);
-		$result=$this->db->update('emp');
+		$result=$this->db->update('apoteker');
 		return $result;	
 	}
 	function deleteEmp(){
 		$id=$this->input->post('id');
 		$this->db->where('id', $id);
-		$result=$this->db->delete('emp');
+		$result=$this->db->delete('apoteker');
 		return $result;
 	}	
 }

@@ -52,6 +52,19 @@
       showConfirmButton: false,
       timer: 3000
     });
+    
+    $('.swalDefaultSuccessInputApoteker').click(function() {
+      Toast.fire({
+        type: 'success',
+        title: 'Data Apoteker berhasil ditambahkan.'
+      })
+    });
+    $('.swalDefaultSuccessDeleteApoteker').click(function() {
+      Toast.fire({
+        type: 'success',
+        title: 'Data Apoteker berhasil dihapus.'
+      })
+    });
 
     $('.swalDefaultSuccess').click(function() {
       Toast.fire({

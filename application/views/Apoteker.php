@@ -113,7 +113,7 @@ input[type=text]:focus {
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary swalDefaultSuccessInputApoteker">Save changes</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -122,6 +122,68 @@ input[type=text]:focus {
       </div>
 </form>
       <!-- /.modal -->
+<form id="deleteEmpForm" method="post">
+            <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Jasa Apoteker</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>YAKIN AKAN MENGHAPUS DATA INI, <br />Data tidak akan bisa dikembalikan?&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <input type="hidden" name="ApotekerIDInput" id="ApotekerIDInput" class="form-control">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger swalDefaultSuccessDeleteApoteker">Yes, Delete</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+</form>      
+
+<form id="editEmpForm" method="post">
+   <div class="modal fade" id="modal-update">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Update Jasa Apoteker</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body"> 
+            <div class="col-sm-12">
+              <label class="col-sm-1">No Jasa</label>
+              <label class="col-sm-3">Nama Jasa</label>
+              <label class="col-sm-2">Nominal</label>
+              <label class="col-sm-2">Status</label>
+              <label class="col-sm-3">Keterangan</label>
+            </div>             
+              <div class="col-sm-12">
+                <input type="text" class="col-sm-1" name="njasa" id="njasa" class="form-control" required>
+                <input type="text" class="col-sm-3" name="nmjasa" id="nmjasa" class="form-control" required>
+                <input type="text" class="col-sm-2" name="nnominal" id="nnominal" class="form-control" required>
+                <input type="text" class="col-sm-2" name="nstat" id="nstat" class="form-control" required>
+                <input type="text" class="col-sm-3" name="nket" id="nket" class="form-control" required>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+               <input type="hidden" name="empId" id="empId" class="form-control">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary swalDefaultSuccessInputApoteker">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+</form>
   <?php include('basehome/footerdata.php'); ?>
 </body>
 </html>

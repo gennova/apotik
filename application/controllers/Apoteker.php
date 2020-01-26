@@ -18,11 +18,11 @@ class Apoteker extends CI_Controller{
 		echo json_encode($data);
 	}
 	function update(){
-		$data=$this->EmpModel->updateEmp();
+		$data=$this->M_apoteker->updateEmp();
 		echo json_encode($data);
 	}
 	function delete(){
-		$data=$this->EmpModel->deleteEmp();
+		$data=$this->M_apoteker->deleteEmp();
 		echo json_encode($data);
 	}
 }

@@ -6,9 +6,13 @@ $(document).ready(function(){
 		"bInfo": false,
 		"bFilter": false,
 		"bLengthChange": false,
-		"pageLength": 5		
+		"pageLength": 10		
 	}); 
 	// list all employee in datatable
+	function reload_table(){
+		//location.reload(false);		
+		table.ajax.reload(null,false); //reload datatable ajax 
+	}
 	function listEmployee(){		
 		$.ajax({
 			type  : 'ajax',
@@ -25,15 +29,14 @@ $(document).ready(function(){
 							'<td>'+data[i].nominal+'</td>'+		                        
 							'<td>'+data[i].status+'</td>'+
 							'<td>'+data[i].keterangan+'</td>'+
-							'<td style="text-align:right;">'+
-								'<a href="javascript:void(0);" class="editRecord" data-id="'+data[i].id+'" data-name="'+data[i].name+'" data-age="'+data[i].age+'" data-skills="'+data[i].skills+'" data-designation="'+data[i].designation+'" data-address="'+data[i].address+'">Edit</a>'+' '+
+							'<td style="text-align:center;">'+
+								'<a href="javascript:void(0);" class="editRecord" data-id="'+data[i].id+'" data-nojasa="'+data[i].nojasa+'" data-namajasa="'+data[i].namajasa+'" data-nominal="'+data[i].nominal+'" data-status="'+data[i].status+'" data-keterangan="'+data[i].keterangan+'">Edit</a>'+' '+
 								'<a href="javascript:void(0);" class="deleteRecord" data-id="'+data[i].id+'">Delete</a>'+
 							'</td>'+
 							'</tr>';
 				}
 				$('#listRecords').html(html);					
 			}
-
 		});		
 	}
 	// save new employee record
@@ -57,65 +60,71 @@ $(document).ready(function(){
 				$('#keterangan').val("");
 				$('#modal-xl').modal('hide');
 				listEmployee();
+				reload_table();
 			}
 		});
 		return false;
 	});
 	// show edit modal form with emp data
 	$('#listRecords').on('click','.editRecord',function(){
-		$('#editEmpModal').modal('show');
+		console.log("Nomor jasa "+$(this).data('nojasa'));
+		console.log("Nama jasa "+$(this).data('status'));
+		$('#modal-update').modal('show');
 		$("#empId").val($(this).data('id'));
-		$("#empName").val($(this).data('name'));
-		$("#empAge").val($(this).data('age'));
-		$("#empDesignation").val($(this).data('designation'));
-		$("#empSkills").val($(this).data('skills'));
-		$("#empAddress").val($(this).data('address'));
+		$("#njasa").val($(this).data('nojasa'));
+		$("#nmjasa").val($(this).data('namajasa'));
+		$("#nnominal").val($(this).data('nominal'));
+		$("#nstat").val($(this).data('status'));
+		$("#nket").val($(this).data('keterangan'));
 	});
 	// save edit record
 	 $('#editEmpForm').on('submit',function(){
-		var empId = $('#empId').val();
-		var empName = $('#empName').val();
-		var empAge = $('#empAge').val();
-		var empDesignation = $('#empDesignation').val();
-		var empSkills = $('#empSkills').val();
-		var empAddress = $('#empAddress').val();			
+	 	var empId = $('#empId').val();
+		var nojasa = $('#njasa').val();
+		var namajasa = $('#nmjasa').val();
+		var nominal = $('#nnominal').val();
+		var status = $('#nstat').val();
+		var keterangan = $('#nket').val();			
 		$.ajax({
 			type : "POST",
-			url  : "emp/update",
+			url  : "http://localhost/apotik/apoteker/update",
 			dataType : "JSON",
-			data : {id:empId, name:empName, age:empAge, designation:empDesignation, skills:empSkills, address:empAddress},
+			data : {id:empId,nojasa:nojasa, namajasa:namajasa, nominal:nominal, status:status, keterangan:keterangan},
 			success: function(data){
-				$("#empId").val("");
-				$("#empName").val("");
-				$('#empAge').val("");
-				$("#empSkills").val("");
-				$('#empDesignation').val("");
-				$("#empAddress").val("");
-				$('#editEmpModal').modal('hide');
+				$('#nojasa').val("");
+				$('#namajasa').val("");
+				$('#nominal').val("");
+				$('#status').val("");
+				$('#keterangan').val("");
+				$('#modal-update').modal('hide');
 				listEmployee();
+				reload_table();
 			}
 		});
 		return false;
 	});
 	// show delete form
 	$('#listRecords').on('click','.deleteRecord',function(){
-		var empId = $(this).data('id');            
-		$('#deleteEmpModal').modal('show');
-		$('#deleteEmpId').val(empId);
+		var empId = $(this).data('id');          
+		console.log("EMP ID "+empId);  
+		$('#modal-default').modal('show');
+		$('#ApotekerIDInput').val(empId);
 	});
 	// delete emp record
 	 $('#deleteEmpForm').on('submit',function(){
-		var empId = $('#deleteEmpId').val();
+		var apotekerID = $('#ApotekerIDInput').val();
+		console.log("Deleted "+apotekerID);
 		$.ajax({
 			type : "POST",
-			url  : "emp/delete",
+			url  : "http://localhost/apotik/apoteker/delete",
 			dataType : "JSON",  
-			data : {id:empId},
+			data : {id:apotekerID},
 			success: function(data){
-				$("#"+empId).remove();
-				$('#deleteEmpId').val("");
-				$('#deleteEmpModal').modal('hide');
+				$("#"+apotekerID).remove();
+				$('#ApotekerIDInput').val("");
+				$('#modal-default').modal('hide');
 				listEmployee();
+				reload_table();
 			}
 		});
 		return false;
