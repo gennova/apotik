@@ -238,7 +238,7 @@ class M_produk extends CI_Model{
     		'kemasan3' => $this->kemasan3,
     		'isi3' => $this->isi_kemasan3
   		);
-
+ 
   		$data_harga = array('jenisharga' => $post['jenisharga'],
   							'HNA' =>  $post['hnanya'],
   							'marginresep' => $post['marginresepnya'],

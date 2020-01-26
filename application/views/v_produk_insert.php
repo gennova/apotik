@@ -57,11 +57,11 @@ include ('basehome/homeheadnavaside.php');
                   <div class="row">
                   <div class="col-4">
                     Min. Stok <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="minstok">
+                        <input class="form-control form-control-sm" type="text" placeholder="Stok minimal" name="minstok">
                   </div>
                   <div class="col-4">
                     Rak <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="rak">
+                        <input class="form-control form-control-sm" type="text" placeholder="Lokasi rak" name="rak">
                   </div>
                   <div class="col-4">
                     Pemakaian Obat <br>
@@ -76,7 +76,7 @@ include ('basehome/homeheadnavaside.php');
                 <div class="row">
                   <div class="col-4">
                     Stok Awal <br>
-                        <input class="form-control form-control-sm" type="text" placeholder=" kode barcode produk" name="stokawal">
+                        <input class="form-control form-control-sm" type="text" placeholder="Stok awal" name="stokawal">
                   </div>
                   <div class="col-4">
                     Expirate Date <br>

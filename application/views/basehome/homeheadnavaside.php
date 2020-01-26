@@ -279,13 +279,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo base_url('apoteker'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jasa Apoteker</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="<?php echo base_url('supplier'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Supplier</p>
                 </a>
