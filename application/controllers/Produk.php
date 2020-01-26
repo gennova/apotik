@@ -52,10 +52,9 @@ class Produk extends CI_Controller{
                 {
                     $this->load->view('v_produk_update',$data);
                 }	else {
-                	$product->save();
+                	//$product->save();
                 	$this->load->view("v_produk",$data);
-                }
-		       
+                }		       
 	}
 
 	function update_process($produk_id,$barcode){
@@ -73,7 +72,6 @@ class Produk extends CI_Controller{
                 	$product->update($produk_id,$barcode);
                 	redirect(base_url('produk'));
                 }
-
 	}
 
 	function delete($produk_id){

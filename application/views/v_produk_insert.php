@@ -23,7 +23,7 @@ include ('basehome/homeheadnavaside.php');
               <div class="card-body" style="padding: 0.25rem"> 
                 <div class="row">                        
                  <div class="col-4">
-                  Barcode <input class="form-control form-control-sm" type="text"name="barcode" id="myInput" placeholder=" kode barcode produk" autocomplete="off">
+                  Barcode <input class="form-control form-control-sm" type="text"name="barcode" id="myInput" placeholder=" kode barcode produk" autocomplete="off" required>
                 </div>
                  <div class="col-8">
                   Nama <input class="form-control form-control-sm" type="text" name="namaproduk" placeholder="nama produk" id="namaproduk">
