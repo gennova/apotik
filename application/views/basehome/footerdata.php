@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.0-rc.3
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 <a href="#"></a>Nowhere</strong> All rights
     reserved.
   </footer>
 
@@ -30,6 +30,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('asetku/adminlte/dist/js/demo.js'); ?>"></script>
 <script src="<?php echo base_url('asetku/crud_operation.js'); ?>"></script>
+<script src="<?php echo base_url('asetku/crud_operation_pembeli.js'); ?>"></script>
 <!-- page script -->
 <script>
   $(function () {
