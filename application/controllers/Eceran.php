@@ -24,9 +24,9 @@ class Eceran extends CI_Controller {
 	{
 		$list = $this->person->get_datatables();
 		$data = array();
-		$no = $_POST['start'];
+		//$no = $_POST['start'];
 		foreach ($list as $person) {
-			$no++;
+		//	$no++;
 			$row = array();
 			$row[] = $person->firstName;
 			$row[] = $person->middleName;
@@ -42,8 +42,9 @@ class Eceran extends CI_Controller {
 		}
 
 		$output = array(
-						"draw" => $_POST['draw'],
+						//"draw" => $_POST['draw'],
 						"recordsTotal" => $this->person->count_all(),
+						"total" => $this->person->sum_total(),
 						"recordsFiltered" => $this->person->count_filtered(),
 						"data" => $data,
 				);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html> 
     <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -327,9 +327,18 @@ function delete_person(id)
             dataType: "JSON",
             success: function(data)
             {
-                //if success reload ajax table
-                $('#modal_form').modal('hide');
-                reload_table();
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    myObj = JSON.parse(this.responseText);
+                    document.getElementById("totalbayar").value = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(myObj.total);
+                    console.log("DATA JSONKU"+myObj.total);
+                }
+            };
+            xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list", true);
+            xmlhttp.send();
+            
+            reload_table();
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -504,4 +513,18 @@ var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla"
 */
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), countries);
+</script>
+
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myObj = JSON.parse(this.responseText);
+    document.getElementById("totalbayar").value = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(myObj.total);
+    console.log("DATA JSONKU"+myObj.total);
+  }
+};
+xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list", true);
+xmlhttp.send();
 </script>

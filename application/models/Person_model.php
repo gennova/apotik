@@ -20,7 +20,7 @@ class Person_model extends CI_Model {
 		$this->db->from($this->table);
 
 		$i = 0;
-	
+	/*
 		foreach ($this->column_search as $item) // loop column 
 		{
 			if($_POST['search']['value']) // if datatable send POST for search
@@ -41,7 +41,7 @@ class Person_model extends CI_Model {
 			}
 			$i++;
 		}
-		
+		*/
 		if(isset($_POST['order'])) // here order processing
 		{
 			$this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
@@ -56,8 +56,8 @@ class Person_model extends CI_Model {
 	function get_datatables()
 	{
 		$this->_get_datatables_query();
-		if($_POST['length'] != -1)
-		$this->db->limit($_POST['length'], $_POST['start']);
+		//if($_POST['length'] != -1)
+		//$this->db->limit($_POST['length'], $_POST['start']);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -75,12 +75,18 @@ class Person_model extends CI_Model {
 		return $this->db->count_all_results();
 	}
 
+	public function sum_total()
+	{
+		$query = $this->db->query("select sum(dob) as total from persons");
+		$row = $query->row();
+		return $row->total;
+	}
+
 	public function get_by_id($id)
 	{
 		$this->db->from($this->table);
 		$this->db->where('id',$id);
 		$query = $this->db->get();
-
 		return $query->row();
 	}
 
