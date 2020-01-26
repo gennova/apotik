@@ -29,6 +29,7 @@
 <script src="<?php echo base_url('asetku/adminlte/dist/js/adminlte.min.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('asetku/adminlte/dist/js/demo.js'); ?>"></script>
+<script src="<?php echo base_url('asetku/crud_operation.js'); ?>"></script>
 <!-- page script -->
 <script>
   $(function () {
