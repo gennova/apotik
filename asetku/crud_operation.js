@@ -2,11 +2,11 @@ $(document).ready(function(){
 	listEmployee();		
 	var table = $('#employeeListing').dataTable({     
 		"bPaginate": true,
-		"searching": true,
+		"searching": false,
 		"bInfo": false,
 		"bFilter": false,
 		"bLengthChange": false,
-		"pageLength": 10		
+		"pageLength": 5		
 	}); 
 	// list all employee in datatable
 	function reload_table(){

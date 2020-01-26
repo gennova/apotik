@@ -66,6 +66,13 @@
       })
     });
 
+    $('.swalDefaultSuccessUpdateApoteker').click(function() {
+      Toast.fire({
+        type: 'success',
+        title: 'Data Apoteker berhasil diupdate.'
+      })
+    });
+
     $('.swalDefaultSuccess').click(function() {
       Toast.fire({
         type: 'success',

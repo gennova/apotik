@@ -174,9 +174,9 @@ input[type=text]:focus {
               </div>
             </div>
             <div class="modal-footer justify-content-between">
-               <input type="hidden" name="empId" id="empId" class="form-control">
+              <input type="hidden" name="empId" id="empId" class="form-control">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary swalDefaultSuccessInputApoteker">Save changes</button>
+              <button type="submit" class="btn btn-primary swalDefaultSuccessUpdateApoteker">Save changes</button>
             </div>
           </div>
           <!-- /.modal-content -->
