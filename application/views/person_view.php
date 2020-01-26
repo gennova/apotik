@@ -265,12 +265,7 @@ function reload_table()
 var totalbayar=0;
 function save()
 {
-    console.log('save');   
-    var x = parseInt(document.getElementById("dob").value);
-    totalbayar = totalbayar + x;
-    console.log(totalbayar);
-    document.getElementById('totalbayarnonformat').value=totalbayar;
-    document.getElementById('totalbayar').value=new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(totalbayar);
+
     save_method = 'add'; 
     var url;
 
@@ -292,6 +287,16 @@ function save()
             if(data.status) //if success close modal and reload ajax table
             {
                 $('#modal_form').modal('hide');
+                var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myObj = JSON.parse(this.responseText);
+    document.getElementById("totalbayar").value = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(myObj.total);
+    console.log("DATA JSONKU"+myObj.total);
+  }
+};
+xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list", true);
+xmlhttp.send();
                 reload_table();
             }
             else
