@@ -106,28 +106,28 @@ class Person extends CI_Controller {
 		if($this->input->post('firstName') == '')
 		{
 			$data['inputerror'][] = 'firstName';
-			$data['error_string'][] = 'First name is required';
+			$data['error_string'][] = 'Nama Barang harus ada';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('middleName') == '')
 		{
 			$data['inputerror'][] = 'middleName';
-			$data['error_string'][] = 'Middle name is required';
+			$data['error_string'][] = 'Stok harus ada (angka)';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('lastName') == '')
 		{
 			$data['inputerror'][] = 'lastName';
-			$data['error_string'][] = 'Last name is required';
+			$data['error_string'][] = 'Harga jual harus ada (angka)';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('dob') == '')
 		{
 			$data['inputerror'][] = 'dob';
-			$data['error_string'][] = 'Date of Birth is required';
+			$data['error_string'][] = 'Total belum diisi';
 			$data['status'] = FALSE;
 		}
 
@@ -141,7 +141,7 @@ class Person extends CI_Controller {
 		if($this->input->post('address') == '')
 		{
 			$data['inputerror'][] = 'address';
-			$data['error_string'][] = 'Addess is required';
+			$data['error_string'][] = 'Diskon harus diisi (default 0)';
 			$data['status'] = FALSE;
 		}
 

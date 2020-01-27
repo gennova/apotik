@@ -259,4 +259,15 @@ class M_produk extends CI_Model{
         return $result;
     }
 
+
+    function get_produkall(){
+        $hasil=$this->db->query("SELECT * FROM produk");
+        return $hasil;
+    }
+
+    function get_produkbyid($id){
+        $hasil=$this->db->query("SELECT * FROM produk WHERE produk_id='$id'");
+        return $hasil->result();
+    }
+
 }
