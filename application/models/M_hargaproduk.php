@@ -23,4 +23,9 @@ class M_hargaproduk extends CI_Model{
 		//$this->db->where("usertype !=","admin");
 		return $this->db->get()->row_array();
 	}
+
+	function get_produkbybarcode($barcode){
+        $hasil=$this->db->query("SELECT * FROM hargaproduk WHERE barcode='$barcode'");
+        return $hasil->result();
+    }
 }

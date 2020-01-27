@@ -78,4 +78,14 @@ class Produk extends CI_Controller{
 		$data=$this->M_produk->delete_product($produk_id);
 		redirect(base_url('produk'));
 	}
+
+	function test(){
+		$x['data']=$this->M_produk->get_produkall();
+		$this->load->view('v_produk_test',$x);
+	}
+
+	function get_produk_byID($id){		
+		$data=$this->M_produk->get_produkbyid($id);
+		echo json_encode($data);
+	}
 }

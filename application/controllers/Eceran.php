@@ -7,6 +7,7 @@ class Eceran extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('person_model','person');
+		$this->load->model("M_produk");
 		$this->load->model('m_invoice');
 		$this->load->helper('rupiah_helper');
 		$this->load->helper(array('form', 'url'));
@@ -16,6 +17,7 @@ class Eceran extends CI_Controller {
 	public function index()
 	{	
 		$x['invoice']=$this->m_invoice->get_no_invoice();
+		$x['data']=$this->M_produk->get_produkall();
 		$this->load->helper('url');
 		$this->load->view('person_view',$x);
 	}
