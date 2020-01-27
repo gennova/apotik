@@ -23,6 +23,11 @@
     .dataTables_length {
         display: none;
     }
+    #totalbayar{
+        width: 100%;
+         border: none;
+  border-bottom: 2px solid red;
+    }
     </style>
     <style>
 body {
@@ -111,7 +116,7 @@ table {
 
             <div class="col-sm-12">
                 <div class="form-body">
-                    <div ng-app="myApp" ng-controller="myCtrl">                       
+                    <div ng-app="myApp" ng-controller="myCtrl" ng-init="stok='1';jumlah='1';diskonnya='0'">                       
                         <div class="form-group">                            
                             <div class="col-md-3" style="padding: 1px">
                             <select name="firstName" id="barcodenya" class="form-control">
@@ -125,19 +130,18 @@ table {
 
                         <div class="form-group">                            
                             <div class="col-md-1" style="padding: 1px">
-                                <input name="middleName" placeholder="Stok" class="form-control" type="text">
-                                
+                                <input name="middleName" ng-model="stok" placeholder="Stok" class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group">                           
                             <div class="col-md-2" style="padding: 1px">
-                                <input name="lastName" id="hargajual" placeholder="Harga Jual" class="form-control" type="text">
+                                <input name="lastName" id="hargajual" ng-model="hargajual" placeholder="Harga Jual" class="form-control" type="text" readonly>
                                 
                             </div>
                         </div>
                         <div class="form-group">                            
                             <div class="col-md-1" style="padding: 1px">
-                                <input name="gender" id="jumlah" value="1" placeholder="Jumlah" class="form-control" type="text">                               
+                                <input name="gender" id="jumlah" ng-model="jumlah" value="1" placeholder="Jumlah" class="form-control" type="text">                               
                             </div>                            
                         </div>
                         <div class="col-md-1" style="padding: 1px">
@@ -145,12 +149,12 @@ table {
                             </div>
                         <div class="form-group">                            
                             <div class="col-md-2" style="padding: 1px">
-                                <input name="address" placeholder="Diskon" class="form-control" type="text" ng-model="diskonnya">                               
+                                <input name="address" id="diskoninput" placeholder="Diskon" class="form-control" type="text" ng-model="diskonnya" onmousedown="mouseDown()" onmouseup="mouseUp()" onmouseout="proses()">                               
                             </div>
                         </div>
                         <div class="form-group">                            
                             <div class="col-md-1" style="padding: 1px">
-                                <input name="dob" id="dob" class="form-control"  placeholder="Total" type="text">
+                                <input name="dob" id="dob" value={{diskonnya*jumlah}} class="form-control"  placeholder="Total" type="text">
                             </div>
                         </div>
 
@@ -391,14 +395,15 @@ function delete_person(id)
     }
 }
 var i = document.getElementById("jumlah").value;
-
 function minus(){ 
     if (i > 1) {
             --i;
         }else {
             document.getElementById("jumlah").value = 1;
         }
+    var hj = document.getElementById("hargajual").value;
     document.getElementById("jumlah").value = i;
+    document.getElementById("dob").value = i*hj;
     console.log(i);
 }
 
@@ -406,7 +411,9 @@ function added(){
     if (i >= -100) {
             ++i;
         }
+    var hj = document.getElementById("hargajual").value;
     document.getElementById("jumlah").value = i;
+    document.getElementById("dob").value = i * hj;
     console.log(i);
 }
 
@@ -460,18 +467,85 @@ xmlhttp.send();
                     var i;
                     for(i=0; i<data.length; i++){                       
                         console.log("lihat data "+data[i].hargajual);
+                        var qty = document.getElementById('jumlah');
                         document.getElementById('hargajual').value=data[i].hargajual;
+                        document.getElementById('dob').value=data[i].hargajual;
                     }               
                 }
             });
         });
     });
 </script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.hargabayar = $scope.diskonnya;
+});
+</script>
 
 <script>
-var app = angular.module("myApp", []);
-app.controller("myCtrl", function($scope) {
-    $scope.stok = "1";
-    $scope.diskonnya = "0";
+var input = document.getElementById("diskoninput");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   var hrgj = document.getElementById('hargajual').value;
+   var juml = document.getElementById('jumlah').value;
+   var disc = document.getElementById('diskoninput').value;
+   var hargaF = parseFloat(hrgj);
+   var jmlF = parseFloat(juml);
+   var discF = parseFloat(disc);
+   var totHargaSebelumDiskon = jmlF*hargaF;
+   var totbayarFloat = totHargaSebelumDiskon - ((discF/100)*totHargaSebelumDiskon);
+   console.log(hargaF);
+   console.log(juml);
+   console.log(disc);
+   document.getElementById('dob').value=totbayarFloat;   
+   event.preventDefault();   
+  }
 });
+function mouseDown() {
+  console.log('CLICKED DOWN');
+  var hrgj = document.getElementById('hargajual').value;
+   var juml = document.getElementById('jumlah').value;
+   var disc = document.getElementById('diskoninput').value;
+   var hargaF = parseFloat(hrgj);
+   var jmlF = parseFloat(juml);
+   var discF = parseFloat(disc);
+   var totHargaSebelumDiskon = jmlF*hargaF;
+   var totbayarFloat = totHargaSebelumDiskon - ((discF/100)*totHargaSebelumDiskon);
+   console.log(hargaF);
+   console.log(juml);
+   console.log(disc);
+   document.getElementById('dob').value=totbayarFloat;   
+}
+
+function mouseUp() {
+  console.log('CLICKED UP');
+  var hrgj = document.getElementById('hargajual').value;
+   var juml = document.getElementById('jumlah').value;
+   var disc = document.getElementById('diskoninput').value;
+   var hargaF = parseFloat(hrgj);
+   var jmlF = parseFloat(juml);
+   var discF = parseFloat(disc);
+   var totHargaSebelumDiskon = jmlF*hargaF;
+   var totbayarFloat = totHargaSebelumDiskon - ((discF/100)*totHargaSebelumDiskon);
+   console.log(hargaF);
+   console.log(juml);
+   console.log(disc);
+   document.getElementById('dob').value=totbayarFloat;   
+}
+function proses() {
+  console.log('on mouse over');
+  var hrgj = document.getElementById('hargajual').value;
+   var juml = document.getElementById('jumlah').value;
+   var disc = document.getElementById('diskoninput').value;
+   var hargaF = parseFloat(hrgj);
+   var jmlF = parseFloat(juml);
+   var discF = parseFloat(disc);
+   var totHargaSebelumDiskon = jmlF*hargaF;
+   var totbayarFloat = totHargaSebelumDiskon - ((discF/100)*totHargaSebelumDiskon);
+   console.log(hargaF);
+   console.log(juml);
+   console.log(disc);
+   document.getElementById('dob').value=totbayarFloat;   
+}
 </script>
