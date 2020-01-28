@@ -25,12 +25,13 @@ $(document).ready(function(){
 				var i;
 				for(i=0; i<data.length; i++){
 					html += '<tr id="'+data[i].id+'">'+
-							'<td>'+data[i].namakategori+'</td>'+
-							'<td>'+data[i].infokategori+'</td>'+
+							'<td>'+data[i].jeniskontak+'</td>'+
 							'<td>'+data[i].marginresep+'</td>'+		                        
 							'<td>'+data[i].marginnonresep+'</td>'+
+							'<td>'+data[i].jenispembayaran+'</td>'+
+							'<td>'+data[i].status+'</td>'+
 							'<td style="text-align:center;">'+
-								'<a href="javascript:void(0);" class="editRecord" data-id="'+data[i].id+'" data-nmkategori="'+data[i].namakategori+'" data-infokategori="'+data[i].infokategori+'" data-marginresep="'+data[i].marginresep+'" data-marginnonresep="'+data[i].marginnonresep+'"><font color="BLUE">Edit</font></a>'+' '+
+								'<a href="javascript:void(0);" class="editRecord" data-id="'+data[i].id+'" data-jeniskontak="'+data[i].jeniskontak+'" data-marginresep="'+data[i].marginresep+'" data-marginnonresep="'+data[i].marginnonresep+'" data-jenisbayar="'+data[i].jenispembayaran+'" data-status="'+data[i].status+'"><font color="BLUE">Edit</font></a>'+' '+
 								'<a href="javascript:void(0);" class="deleteRecord" data-id="'+data[i].id+'"><font color="RED">Delete</font></a>'+
 							'</td>'+
 							'</tr>';
@@ -42,18 +43,24 @@ $(document).ready(function(){
 	// save new employee record
 	$('#saveKategoriPembeliForm').submit('click',function(){
 		console.log("Insert method");
-		var NAMAKATEGORI = $('#namakategori').val();
-		var INFOKATEGORI = $('#infokategori').val();
+		var JENISKONTAK = $('#jeniskontak').val();
 		var MARGINRESEP = $('#marginresep').val();
 		var MARGINNONRESEP = $('#marginnonresep').val();
+		var JENISBAYAR = $('#jenisbayar').val();
+		var STATUS = $( "#statusjenis option:selected" ).val();	
+		console.log(JENISKONTAK);
+		console.log(MARGINRESEP);
+		console.log(MARGINNONRESEP);
+		console.log(JENISBAYAR);	
+		console.log(STATUS);
 		$.ajax({
 			type : "POST",
 			url  : "http://localhost/apotik/katseller/save",
 			dataType : "JSON",
-			data : {namakategori:NAMAKATEGORI, infokategori:INFOKATEGORI, marginresep:MARGINNONRESEP, marginnonresep:MARGINNONRESEP},
+			data : {jeniskontak:JENISKONTAK, marginresep:MARGINRESEP, marginnonresep:MARGINNONRESEP,jenisbayar:JENISBAYAR,status:STATUS},
 			success: function(data){
-				$('#namakategori').val("");
-				$('#infokategori').val("");
+				$('#jeniskontak').val("");
+				$('#jenisbayar').val("");
 				$('#marginresep').val("");
 				$('#marginnonresep').val("");
 				$('#modal-xl').modal('hide');
@@ -67,30 +74,36 @@ $(document).ready(function(){
 	$('#listPembeli').on('click','.editRecord',function(){
 		$('#modal-update').modal('show');
 		$("#pembIDInput").val($(this).data('id'));
-		$("#nmkat").val($(this).data('nmkategori'));
-		$("#infokat").val($(this).data('infokategori'));
-		$("#mresep").val($(this).data('marginresep'));
-		$("#mnresep").val($(this).data('marginnonresep'));
+		$("#jeniskontaku").val($(this).data('jeniskontak'));
+		$("#jenisbayaru").val($(this).data('jenisbayar'));
+		$("#marginresepu").val($(this).data('marginresep'));
+		$("#marginnonresepu").val($(this).data('marginnonresep'));
+		$("#statusjenisu").val($(this).data('status'));
 	});
 	// save edit record
 	 $('#editKategoriPembeliForm').on('submit',function(){
 	 	console.log("Update "+$('#pembIDInput').val())
 	 	var pembID = $('#pembIDInput').val();
-		var NAMAKATEGORI = $('#nmkat').val();
-		var INFOKATEGORI = $('#infokat').val();
-		var MARGINRESEP = $('#mresep').val();
-		var MARGINNONRESEP = $('#mnresep').val();	
+		var JENISKONTAK = $('#jeniskontaku').val();
+		var MARGINRESEP = $('#marginresepu').val();
+		var MARGINNONRESEP = $('#marginnonresepu').val();
+		var JENISBAYAR = $('#jenisbayaru').val();
+		var STATUS = $( "#statusjenisu option:selected" ).val();	
+		console.log(JENISKONTAK);
+		console.log(MARGINRESEP);
+		console.log(MARGINNONRESEP);
+		console.log(JENISBAYAR);	
+		console.log(STATUS);
 		$.ajax({
 			type : "POST",
 			url  : "http://localhost/apotik/katseller/update",
 			dataType : "JSON",
-			data : {id:pembID,namakategori:NAMAKATEGORI, infokategori:INFOKATEGORI, marginresep:MARGINRESEP, marginnonresep:MARGINNONRESEP},
+			data : {id:pembID,jeniskontak:JENISKONTAK, marginresep:MARGINRESEP, marginnonresep:MARGINNONRESEP,jenisbayar:JENISBAYAR,status:STATUS},
 			success: function(data){
-				$('#nmkat').val("");
-				$('#infokat').val("");
-				$('#nominal').val("");
-				$('#mresep').val("");
-				$('#mnresep').val("");
+				$('#jeniskontak').val("");
+				$('#jenisbayar').val("");
+				$('#marginresep').val("");
+				$('#marginnonresep').val("");
 				$('#modal-update').modal('hide');
 				listEmployee();
 				reload_table();

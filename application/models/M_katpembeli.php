@@ -10,10 +10,11 @@ class M_katpembeli extends CI_Model{
 
 	function save(){
 		$data = array(				
-				'namakategori' 			=> $this->input->post('namakategori'), 
-				'infokategori' 			=> $this->input->post('infokategori'), 
+				'jeniskontak' 			=> $this->input->post('jeniskontak'), 
 				'marginresep' 			=> $this->input->post('marginresep'), 
-				'marginnonresep' 			=> $this->input->post('marginnonresep'), 
+				'marginnonresep' 		=> $this->input->post('marginnonresep'),				
+				'jenispembayaran' 		=> $this->input->post('jenisbayar'),
+				'status' 				=> $this->input->post('status') 
 			);
 		$result=$this->db->insert('kategoripembeli',$data);
 		return $result;
@@ -21,14 +22,17 @@ class M_katpembeli extends CI_Model{
 
 	function update(){
 		$id=$this->input->post('id');
-		$namakategori=$this->input->post('namakategori');
-		$infokategori=$this->input->post('infokategori');
+		$jeniskontak=$this->input->post('jeniskontak');
 		$marginresep=$this->input->post('marginresep');
 		$marginnonresep=$this->input->post('marginnonresep');
-		$this->db->set('namakategori', $namakategori);
-		$this->db->set('infokategori', $infokategori);
+		$jenisbayar =$this->input->post('jenisbayar');
+		$status =$this->input->post('status');
+
+		$this->db->set('jeniskontak', $jeniskontak);		
 		$this->db->set('marginresep', $marginresep);
 		$this->db->set('marginnonresep', $marginnonresep);
+		$this->db->set('jenispembayaran', $jenisbayar);
+		$this->db->set('status', $status);
 		$this->db->where('id', $id);
 		$result=$this->db->update('kategoripembeli');
 		return $result;	

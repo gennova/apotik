@@ -296,6 +296,12 @@
                   <p>Kontak</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('katseller'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jenis Kontak</p>
+                </a>
+              </li>
             <li class="nav-item has-treeview">
              <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
