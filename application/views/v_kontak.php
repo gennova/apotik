@@ -26,7 +26,12 @@ include ('basehome/homeheadnavaside.php');
             <div class="card-header">
               <button type="button" class="btn btn-info btn-sm" onclick="location.href='<?php echo base_url('kontak/insert'); ?>'";>
                   INSERT
-                </button><!-- hide button worked
+                </button>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-info" data-id="1">
+                  Launch Info Modal
+                </button>
+                <a href="#" class="mayya" id="mayya" data-target="#modal-info" data-toggle="modal" data-id="16">Open Modal</a>
+                <!-- hide button worked
                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-xl">
                   INSERT
                 </button>
@@ -69,7 +74,7 @@ include ('basehome/homeheadnavaside.php');
                 <tbody>
                   <?php
                   foreach ($kontaks as $key) {
-                    echo "<tr><td>".$key->title."</td><td>".$key->nama."</td><td>".$key->jeniskelamin."</td><td>".$key->golongandarah."</td><td>".$key->tgllahir."</td><td>".$key->tempatlahir."</td><td>".$key->telpon."</td><td>".$key->hp."</td><td>".$key->npwp."</td><td>".$key->alamat."</td><td>".$key->keterangan."</td><td>".$key->status."</td><td>".$key->kategorikontak."</td><td><a href='".base_url('kontak/delete/').$key->id."' id='btn_delete' onclick='data()'><font color='RED'>DELETE</font></a>  <a href='".base_url('kontak/update/').$key->id."'>UPDATE</a></td></tr>";
+                    echo "<tr><td>".$key->title."</td><td>".$key->nama."</td><td>".$key->jeniskelamin."</td><td>".$key->golongandarah."</td><td>".$key->tgllahir."</td><td>".$key->tempatlahir."</td><td>".$key->telpon."</td><td>".$key->hp."</td><td>".$key->npwp."</td><td>".$key->alamat."</td><td>".$key->keterangan."</td><td>".$key->status."</td><td>".$key->kategorikontak."</td><td><a href='".base_url('kontak/delete/').$key->id."' id='btn_delete' onclick='clicked(event)' ><font color='RED'>DELETE</font></a>  <a href='".base_url('kontak/update/').$key->id."'>UPDATE</a></td></tr>";
                   }
                   ?>
                 </tbody>
@@ -85,6 +90,34 @@ include ('basehome/homeheadnavaside.php');
     </section>
     <!-- /.content -->
   </div>
+  <form id="deletekontak" method="post">
+        <div class="modal fade" id="modal-info">
+        <div class="modal-dialog">
+          <div class="modal-content bg-info">
+            <div class="modal-header">
+              <h4 class="modal-title">Info Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <input type="text" name="id" id="id">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>              
+              <button type="submit" class="btn btn-outline-light">Close</button>    
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+</form>
+
+<?php
+
+?>
+      <!-- /.modal -->
   <!-- /.content-wrapper -->
   <style> 
 input[type=text] {
@@ -102,38 +135,7 @@ input[type=text]:focus {
   border: 3px solid #555;
 }
 </style>
-   <div class="modal fade" id="modal-xl">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Extra Large Modal</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table>
-              <form>
-                  <tr><td><label for="fname">Tipe Produk</label>
-                      <input type="text" id="fname" name="fname" value="John"></td>
-                  </tr>
-                  <tr><td><label for="lname">Barcode</label>
-                      <input type="text" id="lname" name="lname" value="Doe"></td>
-                  </tr>
-              </form>
-              </table>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <?php include('basehome/footerdata.php'); ?>
+<?php include('basehome/footerdata.php'); ?>
 </body>
 </html>
 
@@ -148,4 +150,42 @@ var tbl = document.getElementById("example1");
         function getval(cel) {            
             console.log(cel.innerHTML)
         }
+</script>
+
+<script>
+function clicked(e)
+{
+    if(!confirm('Are you sure?'))e.preventDefault();
+}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+   $(".mayya").click(function(event){
+     //alert("Thanks for visiting!");
+     $("#id").val($(this).data('id'));
+     $("#kirim").val("15");     
+   });
+ });
+</script>
+<script>
+  // delete emp record
+   $('#deletekontak').on('submit',function(){
+    var kontakID = $('#id').val();
+    console.log("Deleting from modal"+pembID);
+    $.ajax({
+      type : "POST",
+      url  : "http://localhost/apotik/kontak/delete/"+kontakID,
+      dataType : "JSON",  
+      data : {id:pembID},
+      success: function(data){
+        $("#"+pembID).remove();
+        $('#id').val("");
+        $('#modal-info').modal('hide');
+        //listEmployee();
+        reload_table();
+      }
+    });
+    return false;
+  });
 </script>

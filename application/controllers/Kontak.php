@@ -69,6 +69,13 @@ class Kontak extends CI_Controller{
         redirect(base_url('kontak'));
     }
 
+    function deletewithoutid(){
+        $post = $this->input->post();
+        $id = $post['id'];
+        $this->M_kontak->delete($id);
+        redirect(base_url('kontak'));
+    }
+
     function golongandarah(){
         $data = $this->M_kontak->getGolonganDarah();
     }
