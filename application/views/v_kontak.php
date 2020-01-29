@@ -26,11 +26,7 @@ include ('basehome/homeheadnavaside.php');
             <div class="card-header">
               <button type="button" class="btn btn-info btn-sm" onclick="location.href='<?php echo base_url('kontak/insert'); ?>'";>
                   INSERT
-                </button>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-info" data-id="1">
-                  Launch Info Modal
-                </button>
-                <a href="#" class="mayya" id="mayya" data-target="#modal-info" data-toggle="modal" data-id="16">Open Modal</a>
+                </button>                
                 <!-- hide button worked
                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-xl">
                   INSERT
@@ -74,7 +70,7 @@ include ('basehome/homeheadnavaside.php');
                 <tbody>
                   <?php
                   foreach ($kontaks as $key) {
-                    echo "<tr><td>".$key->title."</td><td>".$key->nama."</td><td>".$key->jeniskelamin."</td><td>".$key->golongandarah."</td><td>".$key->tgllahir."</td><td>".$key->tempatlahir."</td><td>".$key->telpon."</td><td>".$key->hp."</td><td>".$key->npwp."</td><td>".$key->alamat."</td><td>".$key->keterangan."</td><td>".$key->status."</td><td>".$key->kategorikontak."</td><td><a href='".base_url('kontak/delete/').$key->id."' id='btn_delete' onclick='clicked(event)' ><font color='RED'>DELETE</font></a>  <a href='".base_url('kontak/update/').$key->id."'>UPDATE</a></td></tr>";
+                    echo "<tr><td>".$key->title."</td><td>".$key->nama."</td><td>".$key->jeniskelamin."</td><td>".$key->golongandarah."</td><td>".$key->tgllahir."</td><td>".$key->tempatlahir."</td><td>".$key->telpon."</td><td>".$key->hp."</td><td>".$key->npwp."</td><td>".$key->alamat."</td><td>".$key->keterangan."</td><td>".$key->status."</td><td>".$key->kategorikontak."</td><td><a href='#' class='mayya' id='mayya' data-target='#modal-info' data-toggle='modal' data-id='".$key->id."' ><font color='RED'>DELETE</font></a>  <a href='".base_url('kontak/update/').$key->id."' onclick='clicked(event)'>UPDATE</a></td></tr>";
                   }
                   ?>
                 </tbody>
@@ -93,19 +89,19 @@ include ('basehome/homeheadnavaside.php');
   <form id="deletekontak" method="post">
         <div class="modal fade" id="modal-info">
         <div class="modal-dialog">
-          <div class="modal-content bg-info">
+          <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Info Modal</h4>
+              <h4 class="modal-title">Konfirmasi Delete Kontak!</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-              <p>One fine body&hellip;</p>
+              <p>Yakin akan menghapus data ini?&hellip;</p>
             </div>
             <div class="modal-footer justify-content-between">
-              <input type="text" name="id" id="id">
-              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>              
-              <button type="submit" class="btn btn-outline-light">Close</button>    
+              <input type="hidden" name="id" id="id">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>              
+              <button type="submit" class="btn btn-danger">Delete</button>    
             </div>
           </div>
           <!-- /.modal-content -->
@@ -155,7 +151,7 @@ var tbl = document.getElementById("example1");
 <script>
 function clicked(e)
 {
-    if(!confirm('Are you sure?'))e.preventDefault();
+    if(!confirm('Apakah and akan mengubah data ini?'))e.preventDefault();
 }
 </script>
 
@@ -164,7 +160,6 @@ $(document).ready(function(){
    $(".mayya").click(function(event){
      //alert("Thanks for visiting!");
      $("#id").val($(this).data('id'));
-     $("#kirim").val("15");     
    });
  });
 </script>
@@ -172,20 +167,22 @@ $(document).ready(function(){
   // delete emp record
    $('#deletekontak').on('submit',function(){
     var kontakID = $('#id').val();
-    console.log("Deleting from modal"+pembID);
+    console.log("Deleting from modal"+kontakID);
     $.ajax({
       type : "POST",
       url  : "http://localhost/apotik/kontak/delete/"+kontakID,
       dataType : "JSON",  
-      data : {id:pembID},
+      data : {id:kontakID},
       success: function(data){
-        $("#"+pembID).remove();
+        $("#"+kontakID).remove();
         $('#id').val("");
         $('#modal-info').modal('hide');
         //listEmployee();
         reload_table();
       }
     });
+    $('#modal-info').modal('hide');
+    location.reload(true); //reload full from server
     return false;
   });
 </script>
