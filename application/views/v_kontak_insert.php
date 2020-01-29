@@ -80,8 +80,8 @@ include ('basehome/homeheadnavaside.php');
                 <div class="col-2">
                   Status <br>
                         <select class="form-control form-control-sm" name="status">
-                          <option value="Mr">Aktif</option>
-                          <option value="Hrs">Non Aktif</option>
+                          <option value="Aktif">Aktif</option>
+                          <option value="Non Aktif">Non Aktif</option>
                         </select> 
                 </div>
                 <div class="col-3">
