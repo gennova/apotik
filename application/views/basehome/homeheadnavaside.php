@@ -291,9 +291,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
+                <a href="<?php echo base_url('kontak'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kontak</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('katseller'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jenis Kontak</p>
                 </a>
               </li>
             <li class="nav-item has-treeview">

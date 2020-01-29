@@ -16,13 +16,14 @@ include ('basehome/homeheadnavaside.php');
     <section class="content">
       <div class="row">
         <div class="col-12">
-          DATA PRODUK          
+          JENIS KATEGORI KONTAK         
           <!-- /.card -->
           <div class="card">
             <div class="card-header">
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-xl">
                   INSERT
-                </button><!-- hide button worked
+                </button>
+                <!-- hide button worked
                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-xl">
                   INSERT
                 </button>
@@ -46,10 +47,11 @@ include ('basehome/homeheadnavaside.php');
               <table id="kategoriListing" class="table table-bordered table-striped table-hover" style="line-height: 1px">
                 <thead>
                 <tr>
-                  <th>Nama Kategori</th>
-                  <th>Info Kategori</th>
+                  <th>Nama Kategori</th>                  
                   <th>Margin Resep</th>
                   <th>Margin Non Resep</th>
+                  <th>Jenis Pembayaran</th>
+                  <th>Status</th>
                   <th>ACTION</th>
                 </tr>
                 </thead>
@@ -89,24 +91,35 @@ input[type=text]:focus {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Insert kategori Pembeli</h4>
+              <h4 class="modal-title">Insert Jenis Kontak</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body"> 
             <div class="col-sm-12">
-              <label class="col-sm-4">Nama Kategori</label>
-              <label class="col-sm-3">Info Kategori</label>
+              <label class="col-sm-3" style="width: 100%">Jenis Kontak</label>              
               <label class="col-sm-2" style="width: 100%">Margin Resep</label>
-              <label class="col-sm-2" style="width: 100%">Margin Non Resep</label>
+              <label class="col-sm-2" style="width: 100%">M. Non Resep</label>
+              <label class="col-sm-3">Jenis Bayar</label>
+              <label class="col-sm-1">Status</label>
             </div>             
+
               <div class="col-sm-12">
-                <input type="text" class="col-sm-4" name="namakategori" id="namakategori" required>
-                <input type="text" class="col-sm-3" name="infokategori" id="infokategori" required>
-                <input type="text" class="col-sm-2" name="marginresep" id="marginresep" required>
-                <input type="text" class="col-sm-2" name="marginnonresep" id="marginnonresep" required>
-              </div>
+                <div class="row">
+                  <div class="col-3"><input type="text" name="jeniskontak" id="jeniskontak" required></div>
+                  <div class="col-2"><input type="text" name="marginresep" id="marginresep" required></div>
+                  <div class="col-2"><input type="text" name="marginnonresep" id="marginnonresep" required></div>
+                  <div class="col-3"><input type="text" name="jenisbayar" id="jenisbayar" required></div>
+                  <div class="col-2">
+                        <select class="form-control form-control-sm" name="statusjenis" id="statusjenis">
+                          <option value="Aktif">Aktif</option>
+                          <option value="Non Aktif">Non Aktif</option>
+                        </select>   
+                  </div> 
+                </div>
+                
+                            
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -118,13 +131,14 @@ input[type=text]:focus {
         <!-- /.modal-dialog -->
       </div>
 </form>
+</div>
       <!-- /.modal -->
 <form id="deleteKategoriPembeliForm" method="post">
             <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Delete Kategori Pembeli</h4>
+              <h4 class="modal-title">Delete Jenis Kontak</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -149,24 +163,35 @@ input[type=text]:focus {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Update Kategori Pembeli</h4>
+              <h4 class="modal-title">Update Jenis Kontak</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body"> 
-            <div class="col-sm-12">
-              <label class="col-sm-4">Nama Kategori</label>
-              <label class="col-sm-3">Info Kategori</label>
-              <label class="col-sm-2">Margin resep</label>
-              <label class="col-sm-2">Margin NonResep</label>
+                       <div class="col-sm-12">
+              <label class="col-sm-3" style="width: 100%">Jenis Kontak</label>              
+              <label class="col-sm-2" style="width: 100%">Margin Resep</label>
+              <label class="col-sm-2" style="width: 100%">M. Non Resep</label>
+              <label class="col-sm-3">Jenis Bayar</label>
+              <label class="col-sm-1">Status</label>
             </div>             
+
               <div class="col-sm-12">
-                <input type="text" class="col-sm-4" name="nmkat" id="nmkat" class="form-control" required>
-                <input type="text" class="col-sm-3" name="infokat" id="infokat" class="form-control" required>
-                <input type="text" class="col-sm-2" name="mresep" id="mresep" class="form-control" required>
-                <input type="text" class="col-sm-2" name="mnresep" id="mnresep" class="form-control" required>
-              </div>
+                <div class="row">
+                  <div class="col-3"><input type="text" name="jeniskontak" id="jeniskontaku" required></div>
+                  <div class="col-2"><input type="text" name="marginresep" id="marginresepu" required></div>
+                  <div class="col-2"><input type="text" name="marginnonresep" id="marginnonresepu" required></div>
+                  <div class="col-3"><input type="text" name="jenisbayar" id="jenisbayaru" required></div>
+                  <div class="col-2">
+                        <select class="form-control form-control-sm" name="statusjenisu" id="statusjenisu">
+                          <option value="Aktif">Aktif</option>
+                          <option value="Non Aktif">Non Aktif</option>
+                        </select>   
+                  </div> 
+                </div>
+                
+                            
             </div>
             <div class="modal-footer justify-content-between">
               <input type="hidden" name="pembIDInput" id="pembIDInput" class="form-control">
@@ -179,6 +204,8 @@ input[type=text]:focus {
         <!-- /.modal-dialog -->
       </div>
 </form>
+</div>
+
   <?php include('basehome/footerdata.php'); ?>
 </body>
 </html>

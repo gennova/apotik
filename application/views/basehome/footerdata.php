@@ -35,6 +35,7 @@
 <script>
   $(function () {
     $("#example1").DataTable();
+    $("#supplierTableID").DataTable();
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -45,6 +46,7 @@
     });
   });
 </script>
+
 <script type="text/javascript">
   $(function() {
     const Toast = Swal.mixin({
