@@ -31,7 +31,7 @@ class Transaksi extends CI_Controller
                     $this->load->view('person_view',$data);
                 }	else {
                 	$transaksi->insert();
-                	redirect(base_url('person'));
+                	redirect(base_url('eceran'));
                 }
 	}
 }

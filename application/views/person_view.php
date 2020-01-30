@@ -78,7 +78,7 @@ table {
              <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Pelanggan</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
-                <input name="namapelanggan" placeholder="Pelanggan" class="form-control" type="text">
+                <input name="namapelanggan" placeholder="Pelanggan" id="namapelanggan" class="form-control" type="text">
             </div>
         </div> 
         <div class="col-sm-3">
@@ -548,4 +548,13 @@ function proses() {
    console.log(disc);
    document.getElementById('dob').value=totbayarFloat;   
 }
+</script>
+
+<script>
+var input = document.getElementById("namapelanggan");
+$(document).on("keydown", ":input:not(textarea)", function(event) {
+    if (event.key == "Enter") {
+        event.preventDefault();
+    }
+});
 </script>
