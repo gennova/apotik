@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit ('No direct script allowed');
 
 class M_supplier extends CI_Model{
-	private $_table="Supplier";
+	private $_table="supplier";
 	public $produk_id;
 
 	public function rules()

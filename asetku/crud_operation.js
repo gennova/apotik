@@ -10,7 +10,7 @@ $(document).ready(function(){
 	}); 
 	// list all employee in datatable
 	function reload_table(){
-		//location.reload(false);		
+		location.reload(false);		
 		table.ajax.reload(null,false); //reload datatable ajax 
 	}
 	function listEmployee(){		
@@ -31,7 +31,7 @@ $(document).ready(function(){
 							'<td>'+data[i].keterangan+'</td>'+
 							'<td style="text-align:center;">'+
 								'<a href="javascript:void(0);" class="editRecord" data-id="'+data[i].id+'" data-nojasa="'+data[i].nojasa+'" data-namajasa="'+data[i].namajasa+'" data-nominal="'+data[i].nominal+'" data-status="'+data[i].status+'" data-keterangan="'+data[i].keterangan+'">Edit</a>'+' '+
-								'<a href="javascript:void(0);" class="deleteRecord" data-id="'+data[i].id+'">Delete</a>'+
+								'<a href="javascript:void(0);" class="deleteRecord " data-id="'+data[i].id+'" >Delete</a>'+
 							'</td>'+
 							'</tr>';
 				}

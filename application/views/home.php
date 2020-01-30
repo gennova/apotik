@@ -269,7 +269,7 @@ include ('basehome/homeheadnavaside.php');
                         <img class="direct-chat-img" src="<?php echo base_url('asetku/adminlte/dist/img/user1-128x128.jpg'); ?>" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
-                          Is this template really for free? That's unbelievable!
+                          Apakah ada obat centfresh untuk mata?
                         </div>
                         <!-- /.direct-chat-text -->
                       </div>
@@ -285,7 +285,7 @@ include ('basehome/homeheadnavaside.php');
                         <img class="direct-chat-img" src="<?php echo base_url('asetku/adminlte/dist/img/user3-128x128.jpg'); ?>" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
-                          You better believe it!
+                          Ada...
                         </div>
                         <!-- /.direct-chat-text -->
                       </div>
@@ -301,7 +301,7 @@ include ('basehome/homeheadnavaside.php');
                         <img class="direct-chat-img" src="<?php echo base_url('asetku/adminlte/dist/img/user1-128x128.jpg'); ?>" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
-                          Working with Apotik on a great new app! Wanna join?
+                          Ok, terimakasih
                         </div>
                         <!-- /.direct-chat-text -->
                       </div>
@@ -317,7 +317,7 @@ include ('basehome/homeheadnavaside.php');
                         <img class="direct-chat-img" src="<?php echo base_url('asetku/adminlte/dist/img/user3-128x128.jpg'); ?>" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
-                          I would love to.
+                          Sama-sama
                         </div>
                         <!-- /.direct-chat-text -->
                       </div>
@@ -335,10 +335,10 @@ include ('basehome/homeheadnavaside.php');
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
-                                Count Dracula
+                                Nadiem Makarim
                                 <small class="contacts-list-date float-right">2/28/2015</small>
                               </span>
-                              <span class="contacts-list-msg">How have you been? I was...</span>
+                              <span class="contacts-list-msg">Menanyakan ketersediaan obat</span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -353,7 +353,7 @@ include ('basehome/homeheadnavaside.php');
                                 Sarah Doe
                                 <small class="contacts-list-date float-right">2/23/2015</small>
                               </span>
-                              <span class="contacts-list-msg">I will be waiting for...</span>
+                              <span class="contacts-list-msg">Apakah hari ini apotik buka?</span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -368,7 +368,7 @@ include ('basehome/homeheadnavaside.php');
                                 Nadia Jolie
                                 <small class="contacts-list-date float-right">2/20/2015</small>
                               </span>
-                              <span class="contacts-list-msg">I'll call you back at...</span>
+                              <span class="contacts-list-msg">Bolehkah pesan tanpa resep?</span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -380,10 +380,10 @@ include ('basehome/homeheadnavaside.php');
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
-                                Nora S. Vans
+                                Nora S
                                 <small class="contacts-list-date float-right">2/10/2015</small>
                               </span>
-                              <span class="contacts-list-msg">Where is your new...</span>
+                              <span class="contacts-list-msg">Terimakasih</span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -398,7 +398,7 @@ include ('basehome/homeheadnavaside.php');
                                 John K.
                                 <small class="contacts-list-date float-right">1/27/2015</small>
                               </span>
-                              <span class="contacts-list-msg">Can I take a look at...</span>
+                              <span class="contacts-list-msg">Bisa</span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -413,7 +413,7 @@ include ('basehome/homeheadnavaside.php');
                                 Kenneth M.
                                 <small class="contacts-list-date float-right">1/4/2015</small>
                               </span>
-                              <span class="contacts-list-msg">Never mind I found...</span>
+                              <span class="contacts-list-msg">Pesan resep lagi min</span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -589,8 +589,8 @@ include ('basehome/homeheadnavaside.php');
               <span class="info-box-icon"><i class="far fa-heart"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Mentions</span>
-                <span class="info-box-number">92,050</span>
+                <span class="info-box-text">Surat Pemesanan</span>
+                <span class="info-box-number">92</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -599,8 +599,8 @@ include ('basehome/homeheadnavaside.php');
               <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Downloads</span>
-                <span class="info-box-number">114,381</span>
+                <span class="info-box-text">Defecta</span>
+                <span class="info-box-number">20</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -609,8 +609,8 @@ include ('basehome/homeheadnavaside.php');
               <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Direct Messages</span>
-                <span class="info-box-number">163,921</span>
+                <span class="info-box-text">Jatuh Tempo</span>
+                <span class="info-box-number">25</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -642,10 +642,10 @@ include ('basehome/homeheadnavaside.php');
                       <img src="<?php echo base_url('asetku/adminlte/dist/img/default-150x150.png'); ?>" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Samsung TV
-                        <span class="badge badge-warning float-right">$1800</span></a>
+                      <a href="javascript:void(0)" class="product-title">Enervonc Box
+                        <span class="badge badge-warning float-right">20 Box</span></a>
                       <span class="product-description">
-                        Samsung 32" 1080p 60Hz LED Smart HDTV.
+                        Supplier Adi Jaya Sehat
                       </span>
                     </div>
                   </li>
@@ -655,10 +655,10 @@ include ('basehome/homeheadnavaside.php');
                       <img src="<?php echo base_url('asetku/adminlte/dist/img/default-150x150.png'); ?>" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Bicycle
-                        <span class="badge badge-info float-right">$700</span></a>
+                      <a href="javascript:void(0)" class="product-title">Paracetamol
+                        <span class="badge badge-info float-right">2000 Strip</span></a>
                       <span class="product-description">
-                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
+                        Supplier Abadi
                       </span>
                     </div>
                   </li>
@@ -669,12 +669,12 @@ include ('basehome/homeheadnavaside.php');
                     </div>
                     <div class="product-info">
                       <a href="javascript:void(0)" class="product-title">
-                        Xbox One <span class="badge badge-danger float-right">
-                        $350
+                        Masker <span class="badge badge-danger float-right">
+                        1 Box
                       </span>
                       </a>
                       <span class="product-description">
-                        Xbox One Console Bundle with Halo Master Chief Collection.
+                        Supplier Intisehat
                       </span>
                     </div>
                   </li>
@@ -684,10 +684,10 @@ include ('basehome/homeheadnavaside.php');
                       <img src="<?php echo base_url('asetku/adminlte/dist/img/default-150x150.png'); ?>" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">PlayStation 4
-                        <span class="badge badge-success float-right">$399</span></a>
+                      <a href="javascript:void(0)" class="product-title">Antangin
+                        <span class="badge badge-success float-right">20 Box</span></a>
                       <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
+                        Supplier Sidomuncul
                       </span>
                     </div>
                   </li>

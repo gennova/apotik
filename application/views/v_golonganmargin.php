@@ -5,10 +5,6 @@
 include ('basehome/homeheadnavaside.php');
 ?>
 <style type="text/css">
-  table {
-    display: inline-block;
-    overflow: scroll;
-  }
   th,tr{
     white-space: nowrap;
   }
@@ -20,11 +16,11 @@ include ('basehome/homeheadnavaside.php');
     <section class="content">
       <div class="row">
         <div class="col-12">
-          DATA PRODUK          
+          DATANG GOLONGAN MARGIN          
           <!-- /.card -->
           <div class="card">
             <div class="card-header">
-              <button type="button" class="btn btn-info btn-sm" onclick="location.href='<?php echo base_url('produk/insert'); ?>'";>
+              <button type="button" class="btn btn-info btn-sm" onclick="location.href='<?php echo base_url('golmargin/insert'); ?>'";>
                   INSERT
                 </button><!-- hide button worked
                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-xl">
@@ -50,21 +46,17 @@ include ('basehome/homeheadnavaside.php');
               <table id="example1" class="table table-bordered table-striped table-hover" style="line-height: 1px">
                 <thead>
                 <tr>
-                  <th>Barcode</th>
-                  <th>Nama Produk</th>
-                  <th>Tipe Produk</th>
-                  <th>Gol. Margin</th>
-                  <th>Rak</th>
-                  <th>Stok</th>
-                  <th>Expirate</th>
-                  <th>Harga</th>
+                  <th>Nama Golongan Margin</th>
+                  <th>Margin Resep</th>
+                  <th>Margin Non Resep</th>
+                  <th>Status</th>
                   <th>ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
-                  foreach ($produks as $key) {
-                    echo "<tr><td>".$key->barcode."</td><td>".$key->namaproduk."</td><td>".$key->tipeproduk."</td><td>".$key->golonganmargin."</td><td>".$key->rak."</td><td>".$key->stokawal."</td><td>".$key->expiratedate."</td><td>Rp. ".rupiah($key->hargajual)."</td><td><a href='".base_url('produk/delete/').$key->produk_id."' id='btn_delete' onclick='data()'><font color='RED'>DELETE</font></a>  <a href='".base_url('produk/update/').$key->produk_id."'>UPDATE</a></td></tr>";
+                  foreach ($golonganmargins as $key) {
+                    echo "<tr><td>".$key->namagolongan."</td><td>".$key->marginresep."</td><td>".$key->marginnonresep."</td><td>".$key->status."</td><td><a href='".base_url('golmargin/delete/').$key->id."' id='btn_delete' onclick='data()'><font color='RED'>DELETE</font></a>  <a href='".base_url('golmargin/update/').$key->id."'>UPDATE</a></td></tr>";
                   }
                   ?>
                 </tbody>

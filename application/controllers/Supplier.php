@@ -47,8 +47,9 @@ class Supplier extends CI_Controller{
 	}
 
 	function update_process($id){
-		$supplier = $this->M_supplier;		
-		$data["supplier"] = $this->M_supplier->getAllSupplier();
+        $this->load->model('M_produk');
+        $supplier = $this->M_supplier;      
+        $data["supplier"] = $supplier->getSupplierByID($id);
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->form_validation->set_rules($supplier->rules());
