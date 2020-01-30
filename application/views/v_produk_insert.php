@@ -40,10 +40,11 @@ include ('basehome/homeheadnavaside.php');
                   <div class="col-4">
                     Golongan Margin <br>
                         <select class="form-control form-control-sm" name="golonganmargin">
-                          <option value="Generik">Generik</option>
-                          <option value="HV">HV</option>
-                          <option value=""Paten Keras>Paten Keras</option>
-                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>
+                          <?php
+                          foreach ($golonganmargins as $key ) {
+                            echo '<option value="'.$key->id.'">'.$key->namagolongan.'</option>';
+                          }
+                          ?>
                         </select>   
                   </div>
                   <div class="col-4">

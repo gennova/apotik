@@ -45,29 +45,18 @@ include ('basehome/homeheadnavaside.php');
                   <div class="col-4">
                     Golongan Margin <br>
                         <select class="form-control form-control-sm" name="golonganmargin">
+                          
                           <?php
-                          if($produks['golonganmargin']=="Generik"){
-                            echo '<option value="Generik" selected>Generik</option>
-                          <option value="HV">HV</option>
-                          <option value=""Paten Keras>Paten Keras</option>
-                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>';
-                          }else if ($produks['golonganmargin']=="HV"){
-                              echo '<option value="Generik">Generik</option>
-                          <option value="HV" selected>HV</option>
-                          <option value=""Paten Keras>Paten Keras</option>
-                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>';
-                          }else if ($produks['golonganmargin']=="Paten Keras"){
-                              echo '<option value="Generik">Generik</option>
-                          <option value="HV" >HV</option>
-                          <option value=""Paten Keras selected>Paten Keras</option>
-                          <option value="Psiko & Narkotika">Psiko & Narkotik</option>';
-                          }else if ($produks['golonganmargin']=="Psiko & Narkotika"){
-                              echo '<option value="Generik">Generik</option>
-                          <option value="HV" >HV</option>
-                          <option value=""Paten Keras >Paten Keras</option>
-                          <option value="Psiko & Narkotika" selected>Psiko & Narkotik</option>';
+                          foreach ($golonganmargins as $key ) {
+                            if($key->id==$produks['golonganmargin']){
+                                echo '<option value="'.$key->id.'" selected>'.$key->namagolongan.'</option>';
+                            }else{
+                              echo '<option value="'.$key->id.'">'.$key->namagolongan.'</option>';
+                            }
+                            
                           }
                           ?>
+                         
                         </select>   
                   </div>
                   <div class="col-4">

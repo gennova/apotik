@@ -133,8 +133,18 @@ class M_produk extends CI_Model{
   							'marginnonresep' => $post['marginnonresepnya'],
   							'hargajual' => $post['hargajualnya'],
   							'hargajualnonresep' => $post['hargajualnonresepnya']);
+
+        $data_stok = array('barcode' => $this->barcode,
+                            'stoka' => $this->min_stok,
+                            'kemasana' => $this->kemasan_dasar,
+                            'stokb' => $this->isi_kemasan2,
+                            'kemasanb' => $this->kemasan2,
+                            'stokc' => $this->isi_kemasan3,
+                            'kemasanc' => $this->isi_kemasan3
+                            );
         $this->db->insert($this->_table, $data);
         $this->db->insert('hargaproduk', $data_harga);
+        $this->db->insert('stokbarang',$data_stok); //masukkan stok awal barang saat input produk
         //return $this->db->insert($this->_table, $this);
     }
 

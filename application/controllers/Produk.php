@@ -9,6 +9,7 @@ class Produk extends CI_Controller{
 		$this->load->model("M_golongan");
 		$this->load->model('M_kemasan');
 		$this->load->model('M_hargaproduk');
+		$this->load->model('M_golonganmargin');
         $this->load->library('form_validation');
         $this->load->helper('rupiah_helper');
 	}
@@ -25,6 +26,7 @@ class Produk extends CI_Controller{
 		$data["golongans"] = $this->M_golongan->getAll();
 		$data["kemasan"] = $this->M_kemasan->getAll();
 		$data["produks"] = $this->M_produk->getAllProduk();
+		$data['golonganmargins'] = $this->M_golonganmargin->getALlGolonganMargin();
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->form_validation->set_rules($product->rules());
@@ -44,7 +46,7 @@ class Produk extends CI_Controller{
 		$data["kemasan"] = $this->M_kemasan->getAll();
 		$data["produks"] = $this->M_produk->getProdukByBarcode($produk_id);
 		$data["hargaproduk"] = $this->M_hargaproduk->getByBarcode($data['produks']['barcode']);	
-		
+		$data['golonganmargins'] = $this->M_golonganmargin->getALlGolonganMargin();
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->form_validation->set_rules($product->rules());
