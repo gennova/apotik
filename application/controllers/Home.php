@@ -8,7 +8,20 @@ class Home extends CI_Controller{
 	}
 
 	function index(){		
-		$this->load->view('home');
+		$this->load->library('session');
+		//echo $this->session->userdata('namauser');
+		//echo $_SESSION['username'];
+		if (isset($_SESSION['logged_in'])) {
+			$level = $this->session->userdata('level');
+			if ($level=="admin") {
+				$this->load->view('home');
+			}else if($level=="kasir"){
+				redirect(base_url('auth/logout'));
+			}
+		}else{				
+			redirect('auth');
+		}
+		
 	}
 
 	function input(){

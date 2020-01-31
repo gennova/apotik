@@ -7,6 +7,7 @@ class Auth extends CI_Controller{
 	{
 		parent::__Construct();
 		$this->load->model('Auth_model');
+		$this->load->library('session');
 	}
 
 	public function index()
@@ -16,7 +17,7 @@ class Auth extends CI_Controller{
          
         public function logout(){
             $this->session->sess_destroy();
-            redirect('/' ,'refresh');
+            redirect('auth' ,'refresh');
             exit;
         }
          
@@ -26,7 +27,14 @@ class Auth extends CI_Controller{
              
             //call the model for auth
             if( $this->Auth_model->login($username, $password)==1){
-            	echo "SUKSES";
+            	//echo "SUKSES";
+            	//redirect('home');
+            $level = $this->session->userdata('level');
+			if ($level=="admin") {
+				redirect('home');
+			}else if($level=="kasir"){
+				redirect('eceran');
+			}
             }else{
             	echo "GAGAL";
             }

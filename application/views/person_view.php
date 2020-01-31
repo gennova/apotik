@@ -57,11 +57,53 @@ table {
         width: 159%;
         height: 35px;
     }
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    .navbar-inverse{
+        background-color: #047c0a;
+        border-color: #047c0a;
+    }
+    .sidenav{
+        padding-left: 30px;
+    }
 </style>
     </head> 
 <body>
-    <div class="container">
-        <h3>Penjualan Eceran</h3>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">APOTIK INDONESIA</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo base_url('home'); ?>">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo base_url('auth/logout'); ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+      <h4>online : <?php echo $this->session->userdata('namauser'); ?></h4>
+      <span id="time"></span> &nbsp;
+      <span id="shift"></span>
+      <ul class="nav nav-pills nav-stacked">
+        <li>TARGET PENJUALAN</li>
+        <li><?php echo $this->session->userdata('targetpenjualan'); ?></li>
+      </ul><br>
+    </div>
+    <div class="col-sm-10">
+                <h3>Penjualan Eceran</h3>
         <!-- <input type="text" name="no_invoice" value="<?php echo $invoice;?>">-->      
         <?php echo validation_errors(); ?> 
         <?php echo form_open('transaksi/save'); ?>
@@ -100,7 +142,7 @@ table {
                 <input name="keterangan" placeholder="Keterangan" class="form-control" type="text">
             </div>
         </div> 
-                             &nbsp &nbsp &nbsp <input type="text" name="totalbayarnonformat" id="totalbayarnonformat">   
+                             &nbsp &nbsp &nbsp <input type="hidden" name="totalbayarnonformat" id="totalbayarnonformat">   
         <div class="col-md-3" style="padding: 0px;padding-left: 20px">
             <button type="submit" id="btnSave" class="btn btn-success">&nbsp &nbsp &nbsp &nbsp Save&nbsp &nbsp &nbsp &nbsp</button>            
         </div>
@@ -188,6 +230,12 @@ table {
             <tbody>
             </tbody>
         </table></div>
+    </div>
+</div>
+
+
+    <div class="container">
+
 
     </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -581,4 +629,52 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
         event.preventDefault();
     }
 });
+</script>
+
+<script type="text/javascript">
+(function () {
+    function checkTime(i) {
+        return (i < 10) ? "0" + i : i;
+    }
+
+    function startTime() {
+        var today = new Date(),
+            h = checkTime(today.getHours()),
+            m = checkTime(today.getMinutes()),
+            s = checkTime(today.getSeconds());
+        document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+        t = setTimeout(function () {
+            startTime()
+        }, 500);
+    }
+    startTime();
+})();
+</script>
+
+<script type="text/javascript">
+    function checkTime(i) {
+        return (i < 10) ? "0" + i : i;
+    }
+    $( document ).ready(function() {
+    console.log( "ready!" );
+    var today = new Date(),
+            h = checkTime(today.getHours()),
+            m = checkTime(today.getMinutes()),
+            s = checkTime(today.getSeconds());
+    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+    var jambukapagi = 6;
+    var jamtutuppagi = 12;
+    var jambukasiang = 12;
+    var jamtutupsiang = 18;
+    if((h>=jambukapagi) && (h<=jamtutuppagi)){
+        document.getElementById('shift').innerHTML ="SHIFT PAGI";
+    } else if((h>=jambukasiang) && (h<=jamtutupsiang)){
+        document.getElementById('shift').innerHTML ="SHIFT SIANG";
+    } 
+    else{
+         document.getElementById('shift').innerHTML ="SHIFT MALAM";
+    }
+    
+});
+     
 </script>

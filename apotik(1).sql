@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jan 2020 pada 17.24
+-- Waktu pembuatan: 31 Jan 2020 pada 15.54
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `apotik`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `ajax_login_ci`
+--
+
+CREATE TABLE `ajax_login_ci` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `level` enum('admin','kasir','staff') NOT NULL DEFAULT 'kasir',
+  `targetpenjualan` int(15) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `ajax_login_ci`
+--
+
+INSERT INTO `ajax_login_ci` (`id`, `nama`, `username`, `password`, `level`, `targetpenjualan`) VALUES
+(3, 'Tendy', 'tendy', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 0),
+(4, 'Administrator', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 0),
+(5, 'Nadya', 'kasir', '8691e4fc53b99da544ce86e22acba62d13352eff', 'kasir', 1500000);
 
 -- --------------------------------------------------------
 
@@ -46,12 +70,40 @@ INSERT INTO `apoteker` (`id`, `nojasa`, `namajasa`, `nominal`, `status`, `ketera
 (2, '200', 'Novitha', 100300, 'Aktif', 'Bandung lautan asmara'),
 (3, '300', 'Dara Natalia', 89000, 'Aktif', 'Jakarta'),
 (4, '400', 'Ami', 78000, 'Non Aktif', 'Tamiang Layang'),
-(5, '', NULL, NULL, NULL, NULL),
-(6, '600', 'Jawinda Irfana', 70000, 'Aktif', 'Kalimantan'),
 (7, '700', 'Nadya Natalia', 1000, 'Aktif', 'Semarang'),
 (8, '800', 'Erlina Tan', 78000, 'Aktif', 'Sem'),
 (9, '900', 'Arneta Haryono', 89000, 'Aktif', 'Semarang'),
 (10, '1000', 'Aileen', 89000, 'Aktif', 'Semarang');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detailtransaksi`
+--
+
+CREATE TABLE `detailtransaksi` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `transaksi` varchar(20) DEFAULT NULL,
+  `barcode` varchar(100) DEFAULT NULL,
+  `stok` varchar(100) DEFAULT NULL,
+  `hargajual` varchar(100) DEFAULT NULL,
+  `qty` varchar(100) DEFAULT NULL,
+  `diskon` varchar(200) DEFAULT NULL,
+  `totalbayar` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `detailtransaksi`
+--
+
+INSERT INTO `detailtransaksi` (`id`, `transaksi`, `barcode`, `stok`, `hargajual`, `qty`, `diskon`, `totalbayar`) VALUES
+(1, 'TRX3101200001', '10011', '1', '97900', '5', '0', '489500'),
+(2, 'TRX3101200001', '10012', '1', '275000', '1', '1', '272250'),
+(3, 'TRX3101200002', '10011', '1', '97900', '1', '0', '97900'),
+(12, 'TRX3101200003', '10011', '1', '97900', '1', '2', '95942'),
+(13, 'TRX3101200003', '10012', '1', '275000', '1', '1', '272250'),
+(14, 'TRX3101200003', '10012', '1', '275000', '7', '10', '1732500'),
+(17, 'TRX3101200004', '10011', '1', '97900', '1', '20', '78320');
 
 -- --------------------------------------------------------
 
@@ -74,6 +126,49 @@ CREATE TABLE `emp` (
 
 INSERT INTO `emp` (`id`, `name`, `skills`, `address`, `designation`, `age`) VALUES
 (0, '1', '1', '1', '1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `golongandarah`
+--
+
+CREATE TABLE `golongandarah` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `golongandarah` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `golongandarah`
+--
+
+INSERT INTO `golongandarah` (`id`, `golongandarah`) VALUES
+(1, 'A'),
+(2, 'B'),
+(3, 'AB'),
+(4, 'O');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `golonganmargin`
+--
+
+CREATE TABLE `golonganmargin` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `namagolongan` varchar(100) DEFAULT NULL,
+  `marginresep` int(10) DEFAULT NULL,
+  `marginnonresep` int(10) DEFAULT NULL,
+  `status` enum('Aktif','Non Aktif') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `golonganmargin`
+--
+
+INSERT INTO `golonganmargin` (`id`, `namagolongan`, `marginresep`, `marginnonresep`, `status`) VALUES
+(6, 'Golongan1', NULL, NULL, NULL),
+(7, 'Golongan2', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -140,8 +235,8 @@ CREATE TABLE `hargaproduk` (
 
 INSERT INTO `hargaproduk` (`id`, `barcode`, `jenisharga`, `HNA`, `marginresep`, `marginnonresep`, `hargajual`, `hargajualnonresep`) VALUES
 (1, '10011', 'eceran', 89000, 10, 10, 97900, 97900),
-(4, '10012', 'eceran', 89000, 10, 10, 97900, 97900),
-(7, '10013', 'eceran', 78000, 10, 10, 85800, 85800);
+(6, '10012', 'eceran', 250000, 10, 10, 275000, 275000),
+(12, 'BARCODE1000', 'eceran', 20000, 10, 10, 22000, 22000);
 
 -- --------------------------------------------------------
 
@@ -163,6 +258,21 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
 (16, '4', '4', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jeniskontak`
+--
+
+CREATE TABLE `jeniskontak` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `jeniskontak` varchar(100) NOT NULL,
+  `marginresep` double DEFAULT NULL,
+  `marginnonresep` double DEFAULT NULL,
+  `jenispembayaran` varchar(100) DEFAULT NULL,
+  `status` enum('Aktif','Non Aktif') NOT NULL DEFAULT 'Aktif'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -700,23 +810,45 @@ INSERT INTO `kabupaten` (`id_kab`, `id_prov`, `nama`, `id_jenis`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `kategori_id` int(11) NOT NULL,
+  `kategori_nama` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `kategori`
+--
+
+INSERT INTO `kategori` (`kategori_id`, `kategori_nama`) VALUES
+(1, 'Kosmetik'),
+(2, 'Minuman'),
+(3, 'Makanan');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `kategoripembeli`
 --
 
 CREATE TABLE `kategoripembeli` (
   `id` int(5) UNSIGNED NOT NULL,
-  `namakategori` varchar(100) DEFAULT NULL,
-  `infokategori` text DEFAULT NULL,
+  `jeniskontak` varchar(100) NOT NULL,
   `marginresep` int(10) DEFAULT NULL,
-  `marginnonresep` int(10) DEFAULT NULL
+  `marginnonresep` int(10) DEFAULT NULL,
+  `jenispembayaran` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kategoripembeli`
 --
 
-INSERT INTO `kategoripembeli` (`id`, `namakategori`, `infokategori`, `marginresep`, `marginnonresep`) VALUES
-(1, 'Karyawan', 'karyawan', 10, 10);
+INSERT INTO `kategoripembeli` (`id`, `jeniskontak`, `marginresep`, `marginnonresep`, `jenispembayaran`, `status`) VALUES
+(6, 'Karyawan', 20, 20, 'CC', 'Aktif'),
+(11, 'Dokter', 10, 10, 'CASH', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -90494,6 +90626,36 @@ INSERT INTO `kemasan` (`id`, `namakemasan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kontak`
+--
+
+CREATE TABLE `kontak` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `title` varchar(10) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `jeniskelamin` varchar(10) DEFAULT NULL,
+  `golongandarah` varchar(2) DEFAULT NULL,
+  `tgllahir` date DEFAULT NULL,
+  `tempatlahir` varchar(50) DEFAULT NULL,
+  `telpon` varchar(20) DEFAULT NULL,
+  `hp` varchar(20) DEFAULT NULL,
+  `npwp` varchar(30) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `keterangan` varchar(200) DEFAULT NULL,
+  `status` enum('Aktif','Non Aktif') DEFAULT 'Aktif',
+  `kategorikontak` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kontak`
+--
+
+INSERT INTO `kontak` (`id`, `title`, `nama`, `jeniskelamin`, `golongandarah`, `tgllahir`, `tempatlahir`, `telpon`, `hp`, `npwp`, `alamat`, `keterangan`, `status`, `kategorikontak`) VALUES
+(28, 'Tn', '9', 'Laki-laki', 'A', '2020-01-29', '9', '9', '890', '890', '890', '890', '', 6);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `mahasiswa`
 --
 
@@ -90519,13 +90681,37 @@ INSERT INTO `mahasiswa` (`id`, `nrp`, `nama`, `email`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `person`
+--
+
+CREATE TABLE `person` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `transaksi` varchar(20) DEFAULT NULL,
+  `barcode` varchar(100) DEFAULT NULL,
+  `stok` varchar(100) DEFAULT NULL,
+  `hargajual` varchar(100) DEFAULT NULL,
+  `qty` varchar(100) DEFAULT NULL,
+  `diskon` varchar(200) DEFAULT NULL,
+  `totalbayar` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `person`
+--
+
+INSERT INTO `person` (`id`, `transaksi`, `barcode`, `stok`, `hargajual`, `qty`, `diskon`, `totalbayar`) VALUES
+(98, 'TRX3101200001', '10011', '1', '97900', '1', '2', '95942');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `persons`
 --
 
 CREATE TABLE `persons` (
   `id` int(11) UNSIGNED NOT NULL,
   `transaksi` varchar(20) DEFAULT NULL,
-  `firstName` varchar(100) DEFAULT NULL,
+  `firstname` varchar(100) DEFAULT NULL,
   `middleName` varchar(100) DEFAULT NULL,
   `lastName` varchar(100) DEFAULT NULL,
   `gender` varchar(100) DEFAULT NULL,
@@ -90537,8 +90723,8 @@ CREATE TABLE `persons` (
 -- Dumping data untuk tabel `persons`
 --
 
-INSERT INTO `persons` (`id`, `transaksi`, `firstName`, `middleName`, `lastName`, `gender`, `address`, `dob`) VALUES
-(35, 'TRX2601200001', 'Banyak', '1', '10000', '1', '2000', '1');
+INSERT INTO `persons` (`id`, `transaksi`, `firstname`, `middleName`, `lastName`, `gender`, `address`, `dob`) VALUES
+(1, 'TRX3101200001', '10012', '1', '275000', '1', '0', '275000');
 
 -- --------------------------------------------------------
 
@@ -90586,9 +90772,9 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`produk_id`, `barcode`, `namaproduk`, `tipeproduk`, `golonganmargin`, `golonganproduk`, `minstok`, `rak`, `pemakaianobat`, `stokawal`, `expiratedate`, `nobatch`, `statusobat`, `keterangan`, `farmakologi`, `kategori`, `subkategori`, `kandungan`, `indikasi`, `kontraindikasi`, `efeksamping`, `dosis`, `aturanpakai`, `fdapregnancy`, `fdalatency`, `kemasandasar`, `isidasar`, `kemasan2`, `isi2`, `kemasan3`, `isi3`, `isdelete`) VALUES
-(1, '10011', 'Vitacimin 500mg/l', 'Obat', 'HV', 3, 100, 'R1000', 'Obat Dalam', 100, '2020-01-31', '100', 'Aktif', 'Baik', '1', '2', '3', 'Baik', 'baik', 'baik', 'baik', 'baik', 'baik', 'B', 'C', '3', 10, '10', 10, '10', 10, 'N'),
-(6, '10012', 'Antalgin 200', 'Obat', 'Generik', 1, 1, '1', 'Umum', 1, '2020-01-24', '1', 'Aktif', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'A', 'A', '1', 1, '1', 1, '1', 1, 'N'),
-(9, '10013', 'Mixagrip Anak', 'Obat', 'Generik', 1, 20, 'R90', 'Umum', 100, '2020-01-31', '1', 'Aktif', 'baik', '2', '4', '5', '-', '-', '-', '-', '-', '-', 'A', 'A', '1', 10, '10', 10, '1', 20, 'N');
+(1, '10011', 'Vitacimin 500mg/l', 'Obat', '7', 3, 100, 'R1000', 'Obat Dalam', 100, '2020-01-31', '100', 'Aktif', 'Baik', '1', '2', '3', 'Baik sekali', 'baik', 'baik', 'baik', 'baik', 'baik', 'B', 'C', '3', 10, '10', 10, '10', 10, 'N'),
+(6, '10012', 'Antalgin 200', 'Obat', '7', 1, 1, '1', 'Umum', 1, '2020-01-24', '1', 'Aktif', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'A', 'A', '1', 1, '1', 1, '1', 1, 'N'),
+(12, 'BARCODE1000', 'Centfresh', 'Obat', '6', 1, 100, '11', 'Umum', 550, '2020-01-23', '1', 'Aktif', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'A', 'A', '5', 1, '6', 100, '12', 10, 'N');
 
 -- --------------------------------------------------------
 
@@ -90644,6 +90830,60 @@ INSERT INTO `provinsi` (`id_prov`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `stokbarang`
+--
+
+CREATE TABLE `stokbarang` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `barcode` varchar(20) DEFAULT NULL,
+  `stoka` int(10) NOT NULL COMMENT 'Stok Level 1',
+  `kemasana` varchar(100) DEFAULT NULL,
+  `stokb` int(10) DEFAULT NULL COMMENT 'Stok Level 2',
+  `kemasanb` varchar(100) DEFAULT NULL,
+  `stokc` int(10) DEFAULT NULL COMMENT 'Stok Level 3',
+  `kemasanc` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `stokbarang`
+--
+
+INSERT INTO `stokbarang` (`id`, `barcode`, `stoka`, `kemasana`, `stokb`, `kemasanb`, `stokc`, `kemasanc`) VALUES
+(1, 'BARCODE1000', 550, '5', 100, '6', 10, '10');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `subkategori`
+--
+
+CREATE TABLE `subkategori` (
+  `subkategori_id` int(11) NOT NULL,
+  `subkategori_nama` varchar(50) DEFAULT NULL,
+  `subkategori_kategori_id` int(11) DEFAULT NULL,
+  `detail` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `subkategori`
+--
+
+INSERT INTO `subkategori` (`subkategori_id`, `subkategori_nama`, `subkategori_kategori_id`, `detail`) VALUES
+(12, 'Face wash', 1, 'Face wash'),
+(13, 'Lips Stick', 1, 'Lips stick'),
+(14, 'Skin Care', 1, 'skin careku'),
+(15, 'Body Wash', 1, 'Face wash'),
+(16, 'Minuman Soda', 2, 'Face wash'),
+(17, 'Minuman Dingin', 2, 'Face wash'),
+(18, 'Milkshake', 2, 'Face wash'),
+(19, 'Soft Drink', 2, 'Face wash'),
+(20, 'Breakfast', 3, 'Face wash'),
+(21, 'Lunch', 3, 'Face wash'),
+(22, 'Dinner', 3, 'Face wash');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `supplier`
 --
 
@@ -90665,10 +90905,8 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id`, `nosupplier`, `namasupplier`, `email`, `telpon`, `alamat`, `namasales`, `telponsales`, `keterangan`, `status`) VALUES
-(1, 'S1001', 'PT Sehat Sentosa', 'sentosa@dataprimer.com', '085643221232', 'Semarang', 'Margiono', '0215511921', '9999', 'Aktif'),
 (3, 'S1002', 'Kimia Farma', 'kimia@farma.co.id', '085643221232', 'Semarang Indah Selatan', 'Natalia Oei', '12345678901111', 'Beraktivitas', 'Aktif'),
-(6, 'S103', 'PT Phapros', 'phapros@gmail.com', '08135511921', 'Palangkaraya', 'Andre', '0011921', 'Tidak aktif', 'Aktif'),
-(7, '33', '3', '3', '3', '3', '3', '3', '3', 'Aktif');
+(6, 'S103', 'PT Phapros', 'phapros@gmail.com', '08135511921', 'Palangkaraya', 'Andre', '0011921', 'Tidak aktif', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -90706,11 +90944,10 @@ CREATE TABLE `tbl_invoice` (
 --
 
 INSERT INTO `tbl_invoice` (`no_invoice`, `tanggal`) VALUES
-('FTRX2401200001', '2020-01-24 07:25:50'),
-('FTRX2401200002', '2020-01-24 07:30:04'),
-('FTRX2401200003', '2020-01-24 07:44:57'),
-('FTRX2501200001', '2020-01-25 16:22:05'),
-('FTRX2601200001', '2020-01-26 10:40:09');
+('FTRX3101200001', '2020-01-31 06:07:18'),
+('FTRX3101200002', '2020-01-31 06:10:45'),
+('FTRX3101200003', '2020-01-31 06:37:01'),
+('FTRX3101200004', '2020-01-31 14:53:14');
 
 -- --------------------------------------------------------
 
@@ -90725,7 +90962,7 @@ CREATE TABLE `transaksi` (
   `tipedo` varchar(100) DEFAULT NULL,
   `carabayar` varchar(100) DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL,
-  `totalharga` varchar(100) DEFAULT NULL
+  `totalharga` int(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -90733,23 +90970,43 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `kodetransaksi`, `pelanggan`, `tipedo`, `carabayar`, `keterangan`, `totalharga`) VALUES
-(1, 'TRX2401200001', '1', '1', '1', '1', '1'),
-(2, 'TRX2401200001', '111', '111', '11', '11', '111'),
-(3, 'TRX2401200001', 'Tendy', 'OK', 'BISA', 'YAYA', '90000'),
-(4, 'TRX2401200001', 'nadya', 'DO', 'CASH', 'Lunas', '54500'),
-(5, 'TRX2401200002', 'Tendy', '90', '90', '90', '100000'),
-(6, 'TRX2401200003', 'Jane Erlinda', 'DO', 'casg', 'baik', '113'),
-(7, 'TRX2501200001', '8', '8', '8', '8', '9'),
-(8, 'TRX2601200001', 'Tendy', 'CASH', '90000', '10000', '1');
+(1, 'TRX3101200001', 'Tendy', 'CASg', 'CASH', 'CASG', 0),
+(2, 'TRX3101200002', '1', '1', '1', '1', 0),
+(3, 'TRX3101200003', 'rrrrrrr', 'r', 'r', 'r', 2100692),
+(4, 'TRX3101200004', 'p', 'p', 'p', 'p', 78320);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indeks untuk tabel `ajax_login_ci`
+--
+ALTER TABLE `ajax_login_ci`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `apoteker`
 --
 ALTER TABLE `apoteker`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `detailtransaksi`
+--
+ALTER TABLE `detailtransaksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `golongandarah`
+--
+ALTER TABLE `golongandarah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `golonganmargin`
+--
+ALTER TABLE `golonganmargin`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -90778,10 +91035,22 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `jeniskontak`
+--
+ALTER TABLE `jeniskontak`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `kabupaten`
 --
 ALTER TABLE `kabupaten`
   ADD PRIMARY KEY (`id_kab`) USING BTREE;
+
+--
+-- Indeks untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`kategori_id`);
 
 --
 -- Indeks untuk tabel `kategoripembeli`
@@ -90808,9 +91077,21 @@ ALTER TABLE `kemasan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `kontak`
+--
+ALTER TABLE `kontak`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `person`
+--
+ALTER TABLE `person`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -90831,6 +91112,19 @@ ALTER TABLE `produk`
 --
 ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`id_prov`) USING BTREE;
+
+--
+-- Indeks untuk tabel `stokbarang`
+--
+ALTER TABLE `stokbarang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `subkategori`
+--
+ALTER TABLE `subkategori`
+  ADD PRIMARY KEY (`subkategori_id`),
+  ADD KEY `subkategori_kategori_id` (`subkategori_kategori_id`);
 
 --
 -- Indeks untuk tabel `supplier`
@@ -90861,10 +91155,34 @@ ALTER TABLE `transaksi`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `ajax_login_ci`
+--
+ALTER TABLE `ajax_login_ci`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT untuk tabel `apoteker`
 --
 ALTER TABLE `apoteker`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT untuk tabel `detailtransaksi`
+--
+ALTER TABLE `detailtransaksi`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `golongandarah`
+--
+ALTER TABLE `golongandarah`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `golonganmargin`
+--
+ALTER TABLE `golonganmargin`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `golongan_produk`
@@ -90882,7 +91200,7 @@ ALTER TABLE `hargaobat`
 -- AUTO_INCREMENT untuk tabel `hargaproduk`
 --
 ALTER TABLE `hargaproduk`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `items`
@@ -90891,10 +91209,22 @@ ALTER TABLE `items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT untuk tabel `jeniskontak`
+--
+ALTER TABLE `jeniskontak`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `kategori_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `kategoripembeli`
 --
 ALTER TABLE `kategoripembeli`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `kemasan`
@@ -90903,22 +91233,46 @@ ALTER TABLE `kemasan`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
+-- AUTO_INCREMENT untuk tabel `kontak`
+--
+ALTER TABLE `kontak`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT untuk tabel `person`
+--
+ALTER TABLE `person`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+
+--
 -- AUTO_INCREMENT untuk tabel `persons`
 --
 ALTER TABLE `persons`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `produk_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `produk_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `stokbarang`
+--
+ALTER TABLE `stokbarang`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `subkategori`
+--
+ALTER TABLE `subkategori`
+  MODIFY `subkategori_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
@@ -90930,7 +91284,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -90941,6 +91295,12 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `hargaproduk`
   ADD CONSTRAINT `hargaproduk_ibfk_1` FOREIGN KEY (`barcode`) REFERENCES `produk` (`barcode`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `subkategori`
+--
+ALTER TABLE `subkategori`
+  ADD CONSTRAINT `subkategori_ibfk_1` FOREIGN KEY (`subkategori_kategori_id`) REFERENCES `kategori` (`kategori_id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
