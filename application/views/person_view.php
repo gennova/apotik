@@ -70,7 +70,7 @@ table {
              <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px; width: 100%">KODE TRX</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
-                <input name="kodetransaksinya" placeholder="Pelanggan" class="form-control" type="text"  value="<?php echo $invoice;?>" readonly>
+                <input name="kodetransaksinya" id="trxcode" placeholder="Pelanggan" class="form-control" type="text"  value="<?php echo $invoice;?>" readonly>
             </div>
         </div> 
         <div class="col-sm-12" style="padding-top: 10px"></div>
@@ -100,6 +100,7 @@ table {
                 <input name="keterangan" placeholder="Keterangan" class="form-control" type="text">
             </div>
         </div> 
+                             &nbsp &nbsp &nbsp <input type="text" name="totalbayarnonformat" id="totalbayarnonformat">   
         <div class="col-md-3" style="padding: 0px;padding-left: 20px">
             <button type="submit" id="btnSave" class="btn btn-success">&nbsp &nbsp &nbsp &nbsp Save&nbsp &nbsp &nbsp &nbsp</button>            
         </div>
@@ -108,7 +109,7 @@ table {
         <div class="col-sm-6">
         TOTAL <h1><input type="text" name="totalbayar" id="totalbayar"><h1>
         </div>   
-        <input type="hidden" name="totalbayarnonformat" id="totalbayarnonformat">   
+        
         <?php         
          echo form_close();
          ?>
@@ -164,7 +165,6 @@ table {
                         </div>  <!-- end Angular App controller -->
                     </div>                   
                 </div>
-
                     <!-- <input type="hidden" value="" name="id"/> -->
                     
 
@@ -206,6 +206,8 @@ var table;
 $(document).ready(function() {
     //console.log('DOING THIS FIRST');
     //datatables
+    //var data='TRX3101200001';
+    //console.log('DATA '+data);
     table = $('#table').DataTable({ 
 
         "processing": true, //Feature control the processing indicator.
@@ -214,7 +216,7 @@ $(document).ready(function() {
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('eceran/ajax_list')?>",
+            "url": "<?php echo site_url('eceran/ajax_list/'.$invoice.'')?>",
             "type": "POST"
         },
 
@@ -333,10 +335,17 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     document.getElementById("totalbayar").value = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(myObj.total);
+    if(myObj.total==null){
+        document.getElementById('totalbayarnonformat').value=0;
+    console.log("Harga"+myObj.total);
+    }else{
+        document.getElementById('totalbayarnonformat').value=myObj.total;    
+    }
     console.log("DATA JSONKU"+myObj.total);
   }
 };
-xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list", true);
+var trx= document.getElementById('trxcode').value;
+xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list/"+trx, true);
 xmlhttp.send();
                 reload_table();
             }
@@ -378,10 +387,17 @@ function delete_person(id)
                 if (this.readyState == 4 && this.status == 200) {
                     myObj = JSON.parse(this.responseText);
                     document.getElementById("totalbayar").value = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(myObj.total);
+                    if(myObj.total==null){
+                            document.getElementById('totalbayarnonformat').value=0;
+                            console.log("Harga"+myObj.total);
+                    }else{
+                            document.getElementById('totalbayarnonformat').value=myObj.total;    
+                    }
                     console.log("DATA JSONKU"+myObj.total);
                 }
             };
-            xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list", true);
+            var trx= document.getElementById('trxcode').value;
+            xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list/"+trx, true);
             xmlhttp.send();
             
             reload_table();
@@ -447,10 +463,17 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     document.getElementById("totalbayar").value = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'IDR' }).format(myObj.total);
-    console.log("DATA JSONKU"+myObj.total);
+    if(myObj.total==null){
+        document.getElementById('totalbayarnonformat').value=0;
+    console.log("Harga"+myObj.total);
+    }else{
+        document.getElementById('totalbayarnonformat').value=myObj.total;    
+    }
+    console.log("Harga"+myObj.total);
   }
 };
-xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list", true);
+var trx= document.getElementById('trxcode').value;
+xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list/"+trx, true);
 xmlhttp.send();
 </script>
 <script type="text/javascript">
@@ -469,7 +492,8 @@ xmlhttp.send();
                         console.log("lihat data "+data[i].hargajual);
                         var qty = document.getElementById('jumlah');
                         document.getElementById('hargajual').value=data[i].hargajual;
-                        document.getElementById('dob').value=data[i].hargajual;
+                        document.getElementById('dob').value=data[i].hargajual; 
+                        document.getElementById('diskoninput').value=0;
                     }               
                 }
             });

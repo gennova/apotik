@@ -14,9 +14,9 @@ class Person_model extends CI_Model {
 		$this->load->database();
 	}
 
-	private function _get_datatables_query()
+	private function _get_datatables_query($trx)
 	{
-		
+		$this->db->where('transaksi',$trx);
 		$this->db->from($this->table);
 
 		$i = 0;
@@ -53,31 +53,32 @@ class Person_model extends CI_Model {
 		}
 	}
 
-	function get_datatables()
+	function get_datatables($trx)
 	{
-		$this->_get_datatables_query();
+		$this->_get_datatables_query($trx);
 		//if($_POST['length'] != -1)
 		//$this->db->limit($_POST['length'], $_POST['start']);
 		$query = $this->db->get();
 		return $query->result();
 	}
 
-	function count_filtered()
+	function count_filtered($trx)
 	{
-		$this->_get_datatables_query();
+		$this->_get_datatables_query($trx);
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
 
-	public function count_all()
+	public function count_all($trx)
 	{
+		$this->db->where('transaksi',$trx);
 		$this->db->from($this->table);
 		return $this->db->count_all_results();
 	}
 
-	public function sum_total()
-	{
-		$query = $this->db->query("select sum(totalbayar) as total from detailtransaksi");
+	public function sum_total($trx)
+	{			
+		$query = $this->db->query("select sum(totalbayar) as total from detailtransaksi where transaksi='".$trx."'");
 		$row = $query->row();
 		return $row->total;
 	}

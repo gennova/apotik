@@ -22,9 +22,9 @@ class Eceran extends CI_Controller {
 		$this->load->view('person_view',$x);
 	}
 
-	public function ajax_list()
+	public function ajax_list($trx)
 	{
-		$list = $this->person->get_datatables();
+		$list = $this->person->get_datatables($trx);
 		$data = array();
 		//$no = $_POST['start'];
 		foreach ($list as $person) {
@@ -45,9 +45,9 @@ class Eceran extends CI_Controller {
 
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->person->count_all(),
-						"total" => $this->person->sum_total(),
-						"recordsFiltered" => $this->person->count_filtered(),
+						"recordsTotal" => $this->person->count_all($trx),
+						"total" => $this->person->sum_total($trx),
+						"recordsFiltered" => $this->person->count_filtered($trx),
 						"data" => $data,
 				);
 		//output to json format
