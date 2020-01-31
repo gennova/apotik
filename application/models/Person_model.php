@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Person_model extends CI_Model {
 
-	var $table = 'persons';
-	var $column_order = array('firstname','lastname','gender','address','dob',null); //set column field database for datatable orderable
-	var $column_search = array('firstname','lastname','address'); //set column field database for datatable searchable just firstname , lastname , address are searchable
+	var $table = 'detailtransaksi';
+	var $column_order = array('barcode','stok','hargajual','qty','totalbayar',null); //set column field database for datatable orderable
+	var $column_search = array('barcode','hargajual','totalbayar'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('id' => 'desc'); // default order 
 
 	public function __construct()
@@ -77,7 +77,7 @@ class Person_model extends CI_Model {
 
 	public function sum_total()
 	{
-		$query = $this->db->query("select sum(dob) as total from persons");
+		$query = $this->db->query("select sum(totalbayar) as total from detailtransaksi");
 		$row = $query->row();
 		return $row->total;
 	}

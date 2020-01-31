@@ -28,7 +28,7 @@ class Person extends CI_Controller {
 		foreach ($list as $person) {
 			//$no++;
 			$row = array();
-			$row[] = $person->firstName;
+			$row[] = $person->firstname;
 			$row[] = $person->middleName;
 			$row[] = $person->lastName;
 			$row[] = $person->gender;

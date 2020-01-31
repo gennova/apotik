@@ -30,12 +30,12 @@ class Eceran extends CI_Controller {
 		foreach ($list as $person) {
 		//	$no++;
 			$row = array();
-			$row[] = $person->firstName;
-			$row[] = $person->middleName;
-			$row[] = $person->lastName;
-			$row[] = $person->gender;
-			$row[] = $person->address;
-			$row[] = $person->dob;
+			$row[] = $person->barcode;
+			$row[] = $person->stok;
+			$row[] = $person->hargajual;
+			$row[] = $person->qty;
+			$row[] = $person->diskon;
+			$row[] = $person->totalbayar;
 
 			//add html for action
 			$row[] = '<a class="btn btn-xs btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
@@ -66,12 +66,12 @@ class Eceran extends CI_Controller {
 		$this->_validate();
 		$data = array(
 				'transaksi' => $this->m_invoice->get_no_invoice(),
-				'firstName' => $this->input->post('firstName'),
-				'middleName' => $this->input->post('middleName'),
-				'lastName' => $this->input->post('lastName'),
-				'gender' => $this->input->post('gender'),
-				'address' => $this->input->post('address'),
-				'dob' => $this->input->post('dob'),
+				'barcode' => $this->input->post('firstName'),
+				'stok' => $this->input->post('middleName'),
+				'hargajual' => $this->input->post('lastName'),
+				'qty' => $this->input->post('gender'),
+				'diskon' => $this->input->post('address'),
+				'totalbayar' => $this->input->post('dob'),
 			);
 		$insert = $this->person->save($data);
 		echo json_encode(array("status" => TRUE));
