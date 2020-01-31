@@ -135,7 +135,7 @@ class M_produk extends CI_Model{
   							'hargajualnonresep' => $post['hargajualnonresepnya']);
 
         $data_stok = array('barcode' => $this->barcode,
-                            'stoka' => $this->min_stok,
+                            'stoka' => $this->stok_awal,
                             'kemasana' => $this->kemasan_dasar,
                             'stokb' => $this->isi_kemasan2,
                             'kemasanb' => $this->kemasan2,
@@ -255,12 +255,23 @@ class M_produk extends CI_Model{
   							'marginnonresep' => $post['marginnonresepnya'],
   							'hargajual' => $post['hargajualnya'],
   							'hargajualnonresep' => $post['hargajualnonresepnya']);
+
+        $data_stok = array('barcode' => $this->barcode,
+                            'stoka' => $this->stok_awal,
+                            'kemasana' => $this->kemasan_dasar,
+                            'stokb' => $this->isi_kemasan2,
+                            'kemasanb' => $this->kemasan2,
+                            'stokc' => $this->isi_kemasan3,
+                            'kemasanc' => $this->isi_kemasan3
+                            );
+
   		$this->db->where('produk_id', $produk_id);
 		$this->db->update($this->_table, $data);
 		//update harga produk
 		$this->db->where('barcode', $barcodenya);
 		$this->db->update('hargaproduk', $data_harga);
         //return $this->db->insert($this->_table, $this);
+        $this->db->update('stokbarang',$data_stok); //masukkan stok awal barang saat input produk
     }
 
     function delete_product($produk_id){        
