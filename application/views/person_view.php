@@ -16,6 +16,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
     <![endif]-->
+      <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/select2/css/select2.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
     <style type="text/css">
         .dataTables_filter {
         display: none;
@@ -162,7 +165,7 @@ table {
                     <div ng-app="myApp" ng-controller="myCtrl" ng-init="stok='1';jumlah='1';diskonnya='0'">                       
                         <div class="form-group">                            
                             <div class="col-md-3" style="padding: 1px">
-                            <select name="firstName" id="barcodenya" class="form-control">
+                            <select name="firstName" id="barcodenya" class="form-control select2">
                             <option value="0">-PILIH-</option>
                             <?php foreach($data->result() as $row):?>
                                 <option value="<?php echo $row->barcode;?>"><?php echo $row->namaproduk;?></option>
@@ -241,8 +244,7 @@ table {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
 
@@ -524,31 +526,7 @@ var trx= document.getElementById('trxcode').value;
 xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list/"+trx, true);
 xmlhttp.send();
 </script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#barcodenya').change(function(){
-            var id=$(this).val();
-            console.log("ID "+id);
-            $.ajax({
-                url : "<?php echo base_url();?>index.php/hargaproduk/get_hproduk_bybarcode/"+id,
-                method : "POST",
-                async : false,
-                dataType : 'json',
-                success: function(data){
-                    var i;
-                    for(i=0; i<data.length; i++){                       
-                        console.log("lihat data "+data[i].hargajual);
-                        var qty = document.getElementById('jumlah');
-                        document.getElementById('hargajual').value=data[i].hargajual;
-                        document.getElementById('dob').value=data[i].hargajual; 
-                        document.getElementById('diskoninput').value=0;
-                        document.getElementById('stoka').value=data[i].jumlahstoka; 
-                    }               
-                }
-            });
-        });
-    });
-</script>
+
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
@@ -652,6 +630,114 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 })();
 </script>
 
+
+
+<!-- jQuery -->
+<script src="<?php echo base_url('asetku/adminlte/plugins/jquery/jquery.min.js'); ?>"></script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo base_url('asetku/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url('asetku/adminlte/plugins/select2/js/select2.full.min.js'); ?>"></script>
+<!-- Bootstrap4 Duallistbox -->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#barcodenya').change(function(){
+            var id=$(this).val();
+            console.log("ID "+id);
+            $.ajax({
+                url : "<?php echo base_url();?>index.php/hargaproduk/get_hproduk_bybarcode/"+id,
+                method : "POST",
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var i;
+                    for(i=0; i<data.length; i++){                       
+                        console.log("lihat data "+data[i].hargajual);
+                        var qty = document.getElementById('jumlah');
+                        document.getElementById('hargajual').value=data[i].hargajual;
+                        document.getElementById('dob').value=data[i].hargajual; 
+                        document.getElementById('diskoninput').value=0;
+                        document.getElementById('stoka').value=data[i].jumlahstoka; 
+                    }               
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+    
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
+</script>
 <script type="text/javascript">
     function checkTime(i) {
         return (i < 10) ? "0" + i : i;
