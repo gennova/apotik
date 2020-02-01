@@ -7,6 +7,7 @@ class Eceran extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('person_model','person');
+		$this->load->model('M_hargaproduk','hproduk');
 		$this->load->model("M_produk");
 		$this->load->model('m_invoice');
 		$this->load->helper('rupiah_helper');
@@ -20,7 +21,7 @@ class Eceran extends CI_Controller {
 		$x['data']=$this->M_produk->get_produkall();
 		$this->load->helper('url');
 		$this->load->view('person_view',$x);
-	}
+	} 
 
 	public function ajax_list($trx)
 	{

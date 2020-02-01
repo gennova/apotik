@@ -173,7 +173,7 @@ table {
 
                         <div class="form-group">                            
                             <div class="col-md-1" style="padding: 1px">
-                                <input name="middleName" ng-model="stok" placeholder="Stok" class="form-control" type="text">
+                                <input name="middleName" ng-model="stok" id="stoka" placeholder="Stok" class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group">                           
@@ -542,6 +542,7 @@ xmlhttp.send();
                         document.getElementById('hargajual').value=data[i].hargajual;
                         document.getElementById('dob').value=data[i].hargajual; 
                         document.getElementById('diskoninput').value=0;
+                        document.getElementById('stoka').value=data[i].jumlahstoka; 
                     }               
                 }
             });

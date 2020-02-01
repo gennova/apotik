@@ -25,7 +25,7 @@ class M_hargaproduk extends CI_Model{
 	}
 
 	function get_produkbybarcode($barcode){
-        $hasil=$this->db->query("SELECT * FROM hargaproduk WHERE barcode='$barcode'");
+        $hasil=$this->db->query("SELECT *, sum(stokbarang.stoka) as 'jumlahstoka' FROM hargaproduk join stokbarang on hargaproduk.barcode = stokbarang.barcode WHERE hargaproduk.barcode='$barcode' group by stokbarang.barcode");
         return $hasil->result();
     }
 }
