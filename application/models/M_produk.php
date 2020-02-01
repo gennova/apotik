@@ -137,9 +137,9 @@ class M_produk extends CI_Model{
         $data_stok = array('barcode' => $this->barcode,
                             'stoka' => $this->stok_awal,
                             'kemasana' => $this->kemasan_dasar,
-                            'stokb' => $this->isi_kemasan2,
+                            'stokb' => $this->stok_awal / $this->isi_kemasan2,
                             'kemasanb' => $this->kemasan2,
-                            'stokc' => $this->isi_kemasan3,
+                            'stokc' => ($this->stok_awal / $this->isi_kemasan2)/$this->isi_kemasan3,
                             'kemasanc' => $this->isi_kemasan3
                             );
         $this->db->insert($this->_table, $data);
@@ -259,9 +259,9 @@ class M_produk extends CI_Model{
         $data_stok = array('barcode' => $this->barcode,
                             'stoka' => $this->stok_awal,
                             'kemasana' => $this->kemasan_dasar,
-                            'stokb' => $this->isi_kemasan2,
+                            'stokb' => $this->stok_awal / $this->isi_kemasan2,
                             'kemasanb' => $this->kemasan2,
-                            'stokc' => $this->isi_kemasan3,
+                            'stokc' => ($this->stok_awal / $this->isi_kemasan2) / $this->isi_kemasan3,
                             'kemasanc' => $this->isi_kemasan3
                             );
 
