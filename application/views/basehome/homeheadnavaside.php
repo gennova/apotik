@@ -27,7 +27,7 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
@@ -52,7 +52,7 @@
     </form>
     -->
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto ">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -156,7 +156,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar ">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -168,16 +168,16 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <nav class="mt-2 ">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-close">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                  <!--<i class="right fas fa-angle-left"></i>-->
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -188,13 +188,13 @@
                   <p>Dashboard v1</p>
                 </a>
               </li>
-            -->
+           
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>" class="nav-link activea">
+                <a href="<?php echo base_url(); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home</p>
                 </a>
-              </li>
+              </li> -->
               <!--
               <li class="nav-item">
                 <a href="./index3.html" class="nav-link">
@@ -205,8 +205,8 @@
             -->
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Penjualan
@@ -215,8 +215,8 @@
               </p>
             </a>
               <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo base_url('eceran'); ?>" class="nav-link">
+              <li class="nav-item link active">
+                <a href="<?php echo base_url('eceran'); ?>" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Eceran</p>
                 </a>

@@ -123,22 +123,22 @@ table {
              <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Pelanggan</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
-                <input name="namapelanggan" placeholder="Pelanggan" id="namapelanggan" class="form-control" type="text">
+                <input name="namapelanggan" placeholder="Pelanggan" id="namapelanggan" class="form-control" type="text" required="true">
             </div>
-        </div> 
-        <div class="col-sm-3">
-            <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Tipe DO</label> </div>
-        <div class="form-group">                            
-              <div class="col-sm-9" style="padding: 1px">
-                <input name="tipedo" placeholder="Tipe DO" class="form-control" type="text">
-            </div>
-        </div> 
+        </div>          
         <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Cara Bayar</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
-                <input name="carabayar" placeholder="Cara bayar" class="form-control" type="text">
+                <input name="carabayar" placeholder="Cara bayar" class="form-control" type="text" required="true">
             </div>
         </div> 
+        <div class="col-sm-3">
+            <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Tracking Code</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="tipedo" placeholder="Tracking code" class="form-control" type="text" value="-" required="true">
+            </div>
+        </div>
         <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Keterangan</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
@@ -149,6 +149,9 @@ table {
         <div class="col-md-3" style="padding: 0px;padding-left: 20px">
             <button type="submit" id="btnSave" class="btn btn-success">&nbsp &nbsp &nbsp &nbsp Save&nbsp &nbsp &nbsp &nbsp</button>            
         </div>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success" onclick="move()">
+                  Save Modal
+                </button>
         </div>  
         
         <div class="col-sm-6">
@@ -235,7 +238,38 @@ table {
         </table></div>
     </div>
 </div>
+<div class="modal fade" id="modal-success">
+        <div class="modal-dialog">
+          <div class="modal-content bg-success">
+            <div class="modal-header">
+              <h4 class="modal-title">Save Data Penjualan</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <input id="122" class='TabOnEnter' tabindex="1" /><br>
+        <input id="123" class='TabOnEnter' tabindex="2" /><br>
 
+         <input type="text" name="abc" id="abc" onclick="move()" /><br>
+          <input type="text" name="cde" id="cde"/><br>
+           <input type="text" name="abc2" /><br>
+           <input type="text" name="abc3" class='TabOnEnter' tabindex="3" /><br>
+
+        <input  class='TabOnEnter' tabindex="4" /><br>
+        <input  class='TabOnEnter' tabindex="5" /><br>
+        <input  class='TabOnEnter' tabindex="6" /><br>
+<!--        <textarea class='TabOnEnter' tabindex="6">Hi, I am a test area</textarea>-->
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-light">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 
     <div class="container">
 
@@ -244,8 +278,6 @@ table {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-
-<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
 
 <script type="text/javascript">
@@ -280,15 +312,7 @@ $(document).ready(function() {
 
     });
 
-    //datepicker
-    $('.datepicker').datepicker({
-        autoclose: true,
-        format: "yyyy-mm-dd",
-        todayHighlight: true,
-        orientation: "top auto",
-        todayBtn: true,
-        todayHighlight: true,  
-    });
+    
 
     //set input/textarea/select event when change value, remove class error and remove text help block 
     $("input").change(function(){
@@ -679,63 +703,6 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
     //Initialize Select2 Elements
     $('.select2').select2()
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY hh:mm A'
-      }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    })
-    
-    //Bootstrap Duallistbox
-    $('.duallistbox').bootstrapDualListbox()
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-    });
-
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    });
-
   })
 </script>
 <script type="text/javascript">
@@ -763,5 +730,10 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
     }
     
 });
-     
+</script>
+<script>
+function move() {
+    console.log("move");
+    $('input[name=abc]').focus();
+};
 </script>
