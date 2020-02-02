@@ -16,9 +16,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-      <!-- Select2 -->
-  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/select2/css/select2.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
     <style type="text/css">
         .dataTables_filter {
         display: none;
@@ -166,7 +163,7 @@ table {
                     <div ng-app="myApp" ng-controller="myCtrl" ng-init="stok='1';jumlah='1';diskonnya='0'">                       
                         <div class="form-group">                            
                             <div class="col-md-3" style="padding: 1px">
-                            <select name="firstName" id="barcodenya" class="form-control select2">
+                            <select name="firstName" id="barcodenya" class="form-control">
                             <option value="0">-PILIH-</option>
                             <?php foreach($data->result() as $row):?>
                                 <option value="<?php echo $row->barcode;?>"><?php echo $row->namaproduk;?></option>
@@ -276,6 +273,12 @@ table {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<<<<<<< HEAD
+=======
+<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+>>>>>>> parent of a999705... select2
 
 
 <script type="text/javascript">
@@ -548,7 +551,31 @@ var trx= document.getElementById('trxcode').value;
 xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list/"+trx, true);
 xmlhttp.send();
 </script>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#barcodenya').change(function(){
+            var id=$(this).val();
+            console.log("ID "+id);
+            $.ajax({
+                url : "<?php echo base_url();?>index.php/hargaproduk/get_hproduk_bybarcode/"+id,
+                method : "POST",
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var i;
+                    for(i=0; i<data.length; i++){                       
+                        console.log("lihat data "+data[i].hargajual);
+                        var qty = document.getElementById('jumlah');
+                        document.getElementById('hargajual').value=data[i].hargajual;
+                        document.getElementById('dob').value=data[i].hargajual; 
+                        document.getElementById('diskoninput').value=0;
+                        document.getElementById('stoka').value=data[i].jumlahstoka; 
+                    }               
+                }
+            });
+        });
+    });
+</script>
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
@@ -652,6 +679,7 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 })();
 </script>
 
+<<<<<<< HEAD
 
 
 <!-- jQuery -->
@@ -703,6 +731,8 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 
   })
 </script>
+=======
+>>>>>>> parent of a999705... select2
 <script type="text/javascript">
     function checkTime(i) {
         return (i < 10) ? "0" + i : i;
