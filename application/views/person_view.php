@@ -133,7 +133,7 @@ table {
             </div>
         </div> 
         <div class="col-sm-3">
-            <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Tracking Code</label> </div>
+            <label class="control-label col-md-2" style="padding-top: 1px; padding-left: 1px;width: 100%">Tracking Code</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
                 <input name="tipedo" placeholder="Tracking code" class="form-control" type="text" value="-" required="true">
