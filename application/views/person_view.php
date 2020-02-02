@@ -149,11 +149,7 @@ table {
         <div class="col-md-3" style="padding: 0px;padding-left: 20px">
             <button type="submit" id="btnSave" class="btn btn-success">&nbsp &nbsp &nbsp &nbsp Save&nbsp &nbsp &nbsp &nbsp</button>            
         </div>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success" onclick="move()">
-                  Save Modal
-                </button>
-        </div>  
-        
+               
         <div class="col-sm-6">
         TOTAL <h1><input type="text" name="totalbayar" id="totalbayar"><h1>
         </div>   
