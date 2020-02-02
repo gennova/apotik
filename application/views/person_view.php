@@ -274,7 +274,10 @@ table {
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of a999705... select2
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
@@ -680,6 +683,7 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 </script>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 <!-- jQuery -->
@@ -731,6 +735,8 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 
   })
 </script>
+=======
+>>>>>>> parent of a999705... select2
 =======
 >>>>>>> parent of a999705... select2
 <script type="text/javascript">
