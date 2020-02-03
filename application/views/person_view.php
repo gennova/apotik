@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
-    <head> 
-    <meta charset="utf-8">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>APOTIK PENJUALAN ECERAN</title>
@@ -16,6 +16,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
     <![endif]-->
+      <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/select2/css/select2.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('asetku/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
     <style type="text/css">
         .dataTables_filter {
         display: none;
@@ -120,23 +123,23 @@ table {
              <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Pelanggan</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
-                <input name="namapelanggan" placeholder="Pelanggan" id="namapelanggan" class="form-control" type="text" required="true">
-            </div>
-        </div>          
-        <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Cara Bayar</label> </div>
-        <div class="form-group">                            
-              <div class="col-sm-9" style="padding: 1px">
-                <input name="carabayar" placeholder="Cara bayar" class="form-control" type="text" required="true">
+                <input name="namapelanggan" placeholder="Pelanggan" id="namapelanggan" class="form-control" type="text">
             </div>
         </div> 
         <div class="col-sm-3">
-            <label class="control-label col-md-2" style="padding-top: 1px; padding-left: 1px;width: 100%">Tracking Code</label> </div>
+            <label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Tipe DO</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
-                <input name="tipedo" placeholder="Tracking code" class="form-control" type="text" value="-" required="true">
+                <input name="tipedo" placeholder="Tipe DO" class="form-control" type="text">
             </div>
-        </div>
-        <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 1px; padding-left: 1px">Keterangan</label> </div>
+        </div> 
+        <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px;width: 100%">Cara Bayar</label> </div>
+        <div class="form-group">                            
+              <div class="col-sm-9" style="padding: 1px">
+                <input name="carabayar" placeholder="Cara bayar" class="form-control" type="text">
+            </div>
+        </div> 
+        <div class="col-sm-3"><label class="control-label col-md-2" style="padding-top: 8px; padding-left: 1px">Keterangan</label> </div>
         <div class="form-group">                            
               <div class="col-sm-9" style="padding: 1px">
                 <input name="keterangan" placeholder="Keterangan" class="form-control" type="text">
@@ -146,7 +149,6 @@ table {
         <div class="col-md-3" style="padding: 0px;padding-left: 20px">
             <button type="submit" id="btnSave" class="btn btn-success">&nbsp &nbsp &nbsp &nbsp Save&nbsp &nbsp &nbsp &nbsp</button>            
         </div>
-        
         </div>  
         
         <div class="col-sm-6">
@@ -163,7 +165,7 @@ table {
                     <div ng-app="myApp" ng-controller="myCtrl" ng-init="stok='1';jumlah='1';diskonnya='0'">                       
                         <div class="form-group">                            
                             <div class="col-md-3" style="padding: 1px">
-                            <select name="firstName" id="barcodenya" class="form-control">
+                            <select name="firstName" id="barcodenya" class="form-control select2">
                             <option value="0">-PILIH-</option>
                             <?php foreach($data->result() as $row):?>
                                 <option value="<?php echo $row->barcode;?>"><?php echo $row->namaproduk;?></option>
@@ -233,38 +235,7 @@ table {
         </table></div>
     </div>
 </div>
-<div class="modal fade" id="modal-success">
-        <div class="modal-dialog">
-          <div class="modal-content bg-success">
-            <div class="modal-header">
-              <h4 class="modal-title">Save Data Penjualan</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-              <input id="122" class='TabOnEnter' tabindex="1" /><br>
-        <input id="123" class='TabOnEnter' tabindex="2" /><br>
 
-         <input type="text" name="abc" id="abc" onclick="move()" /><br>
-          <input type="text" name="cde" id="cde"/><br>
-           <input type="text" name="abc2" /><br>
-           <input type="text" name="abc3" class='TabOnEnter' tabindex="3" /><br>
-
-        <input  class='TabOnEnter' tabindex="4" /><br>
-        <input  class='TabOnEnter' tabindex="5" /><br>
-        <input  class='TabOnEnter' tabindex="6" /><br>
-<!--        <textarea class='TabOnEnter' tabindex="6">Hi, I am a test area</textarea>-->
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-light">Save changes</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
 
     <div class="container">
 
@@ -273,20 +244,7 @@ table {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of a999705... select2
-=======
->>>>>>> parent of a999705... select2
-<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
->>>>>>> parent of a999705... select2
-
-
 <script type="text/javascript">
 
 var save_method; //for save method string
@@ -319,7 +277,15 @@ $(document).ready(function() {
 
     });
 
-    
+    //datepicker
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        orientation: "top auto",
+        todayBtn: true,
+        todayHighlight: true,  
+    });
 
     //set input/textarea/select event when change value, remove class error and remove text help block 
     $("input").change(function(){
@@ -557,31 +523,7 @@ var trx= document.getElementById('trxcode').value;
 xmlhttp.open("GET", "http://localhost/apotik/eceran/ajax_list/"+trx, true);
 xmlhttp.send();
 </script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#barcodenya').change(function(){
-            var id=$(this).val();
-            console.log("ID "+id);
-            $.ajax({
-                url : "<?php echo base_url();?>index.php/hargaproduk/get_hproduk_bybarcode/"+id,
-                method : "POST",
-                async : false,
-                dataType : 'json',
-                success: function(data){
-                    var i;
-                    for(i=0; i<data.length; i++){                       
-                        console.log("lihat data "+data[i].hargajual);
-                        var qty = document.getElementById('jumlah');
-                        document.getElementById('hargajual').value=data[i].hargajual;
-                        document.getElementById('dob').value=data[i].hargajual; 
-                        document.getElementById('diskoninput').value=0;
-                        document.getElementById('stoka').value=data[i].jumlahstoka; 
-                    }               
-                }
-            });
-        });
-    });
-</script>
+
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
@@ -685,9 +627,6 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 })();
 </script>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 <!-- jQuery -->
@@ -737,14 +676,65 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
     //Initialize Select2 Elements
     $('.select2').select2()
 
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+    
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
   })
 </script>
-=======
->>>>>>> parent of a999705... select2
-=======
->>>>>>> parent of a999705... select2
-=======
->>>>>>> parent of a999705... select2
 <script type="text/javascript">
     function checkTime(i) {
         return (i < 10) ? "0" + i : i;
@@ -770,10 +760,5 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
     }
     
 });
-</script>
-<script>
-function move() {
-    console.log("move");
-    $('input[name=abc]').focus();
-};
+     
 </script>
