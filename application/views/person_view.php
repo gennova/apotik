@@ -275,7 +275,10 @@ table {
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of a999705... select2
 =======
 >>>>>>> parent of a999705... select2
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
@@ -684,6 +687,7 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 <!-- jQuery -->
@@ -735,6 +739,8 @@ $(document).on("keydown", ":input:not(textarea)", function(event) {
 
   })
 </script>
+=======
+>>>>>>> parent of a999705... select2
 =======
 >>>>>>> parent of a999705... select2
 =======
